@@ -1,0 +1,12 @@
+[project]
+name = "spend-dashboard"
+version = "0.1.0"
+description = "Streamlit dashboard analysing credit card spend"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "plotly>=7.1.0",
+    "streamlit>=1.65.0",
+]
