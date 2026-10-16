@@ -1,0 +1,25 @@
+strategy,id,rank,top_chunk,top_score,top_section
+fixed,Q01,1,fixed-005,0.638,Product Features:
+fixed,Q02,3,fixed-013,0.6541,Packages for Individual Customers:
+fixed,Q03,1,fixed-013,0.6805,Packages for Individual Customers:
+fixed,Q04,1,fixed-019,0.6991,Warning !!! (4)
+fixed,Q05,1,fixed-017,0.6636,Additional Information
+fixed,Q06,1,fixed-007,0.7309,Product Features:
+fixed,Q07,1,fixed-005,0.6951,Product Features:
+fixed,Q08,1,fixed-011,0.7845,Note:
+fixed,Q09,2,fixed-003,0.6626,Product Features:
+fixed,Q10,1,fixed-002,0.7808,Product Features:
+fixed,Q11,1,fixed-015,0.719,Packages for Individual Customers:
+fixed,Q12,1,fixed-020,0.798,Warning !!! (7)
+heading,Q01,1,heading-007,0.6306,Product Features:
+heading,Q02,2,heading-016,0.6585,Packages for Individual Customers:
+heading,Q03,1,heading-018,0.7048,Packages for Individual Customers:
+heading,Q04,1,heading-026,0.7058,Warning !!! (4)
+heading,Q05,1,heading-021,0.6987,Additional Information
+heading,Q06,1,heading-009,0.7251,Product Features:
+heading,Q07,2,heading-024,0.7807,Warning !!! (2)
+heading,Q08,1,heading-013,0.7989,Note:
+heading,Q09,1,heading-029,0.663,Warning !!! (7)
+heading,Q10,1,heading-004,0.7848,Product Features:
+heading,Q11,1,heading-018,0.7343,Packages for Individual Customers:
+heading,Q12,1,heading-030,0.764,Warning !!! (8)

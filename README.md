@@ -7,5 +7,6 @@ A collection of data and AI projects built with Python and Claude Code.
 | Project | Description | Tech |
 |---|---|---|
 | [Spend Analysis Dashboard](spend-dashboard/) | Interactive dashboard analysing six months of credit card spending: KPIs, categories, recurring bills, FX costs and anomaly alerts. | Python, Streamlit, pandas, Plotly, uv |
+| [FinePrint](fineprint/) | Evidence-grounded RAG assistant that answers questions about Emirates NBD current and savings accounts from the bank's Key Facts Statement, with claim-level citations and refusals. | Python, LangChain, LangGraph, Pinecone, Nebius Qwen3, RAGAS, Streamlit, uv |
 
 ![Spend Analysis Dashboard](spend-dashboard/docs/screenshots/overview.png)
