@@ -1,0 +1,5 @@
+strategy,reranker,questions,P@1,MRR,Hit@5,Doc@1,family_P@1,family_Hit@5,median_seconds
+fixed,no,31,58.1,0.617,71.0,80.6,64.5,80.6,0.69
+fixed,yes,31,58.1,0.668,77.4,90.3,64.5,80.6,2.18
+article,no,31,64.5,0.729,87.1,90.3,67.7,90.3,0.67
+article,yes,31,93.5,0.944,96.8,96.8,96.8,96.8,1.92

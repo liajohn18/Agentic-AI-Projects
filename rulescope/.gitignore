@@ -1,0 +1,17 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+# Secrets
+.env
+
+# Regulator documents: do not republish. The manifest + download script rebuild them.
+data/pdfs/
+data/clean/
+data/chunks_*.jsonl
