@@ -1,351 +1,318 @@
 # RuleScope
 
-> **Ask the banking regulations, get the article and the exact quote.**
+> **Know what the regulation actually says — with evidence.**
 
-*Ask a plain-English question about retail-banking and consumer-protection rules and get an answer in which every point cites the regulation, the article and an exact quote from the official text, checked in code.*
+*Ask a question about banking rules in plain English. Get a short answer that shows the exact article and the exact words it came from.*
 
-RuleScope is an evidence-grounded retrieval-augmented generation (RAG) project over **12 regulations from the Central Bank of the UAE (CBUAE) Rulebook**. It retrieves candidate passages, reranks them, generates structured claims, and lets the **application rather than the model** decide which quotes are real. When the regulations do not answer the question, it says so.
+RuleScope searches twelve official banking regulations, picks the passages that answer your question, and writes a short answer. Every point in the answer comes with a quote from the regulation, and the program checks that each quote really appears in the source before showing it. If it cannot find proof, it says so instead of guessing.
 
-RuleScope is an independent, educational project and **not legal or compliance advice**. The Rulebook has no legal effect; the officially issued regulations prevail. It is not affiliated with the Central Bank of the UAE.
+RuleScope is a learning project, **not legal or compliance advice**. The source Rulebook itself states that it has no legal effect; the officially issued regulations always take priority.
 
-## Results at a glance
-
-| Measure | Result |
-|---|---:|
-| Right article first (P@1), fixed-chunk baseline → final | **58.1% → 93.5%** |
-| Right article in the top 5 (Hit@5) | **71.0% → 96.8%** |
-| Out-of-scope questions refused | **6/6** |
-| Answerable questions wrongly refused | **0/31** |
-| Answers judged correct (LLM judge, spot-checked) | **30/31**, 0 wrong |
-| Model claims caught by code (dropped or label repaired) | **2 of 77** |
-| Median response time | **8.6s** |
-
-Measured on a frozen 37-question test set with decision rules set before any result was seen (details under Evaluation).
+![RuleScope answer](docs/screenshots/answer.png)
 
 ## Product overview
 
-The Streamlit app has a sidebar and two views:
+The app has two views and a side panel:
 
-1. **Sidebar:** choose which of the 12 regulations to search (all by default), one-click example questions, and a short "How RuleScope works".
-2. **Answer:** a bullet answer with numbered citations. Under it, each source shows the regulation, article and sub-section, its reference and effective date, the **verified quote**, and a link to the official Rulebook page. A refusal shows the reason.
-3. **Audit Trail:** the detected audience (consumer or SME), time per stage, all 20 retrieved candidates with similarity scores, which 5 the reranker kept (S1–S5) and their rerank scores, the refusal-gate result, the passages given to the model, and what validation dropped or repaired.
+1. **Answer** — type a question and get a short answer. Each point has a number like [1]. Under the answer, each source shows the regulation, the article, the exact quote, the effective date, and a link to the official page.
+2. **Audit Trail** — see how the answer was built: which passages were found, their scores, which five were kept, and anything the checker removed or corrected. This lets anyone check the work.
+3. **Side panel** — choose which regulations to search and click example questions.
 
-Every answer ends either **verified** (at least one claim with a checked quote) or as the refusal *"I couldn't verify that from the Central Bank regulations in RuleScope."*
+Every answer ends in one of two ways: **Verified** (at least one point with a checked quote) or **Refused** (*"I couldn't verify that from the Central Bank regulations in RuleScope."*). A wrong regulation, a made-up quote or a wrong number is never shown as an answer.
+
+![RuleScope audit trail](docs/screenshots/audit_trail.png)
 
 ## The problem
 
-Compliance analysts, bank staff and customers often need to know *what the regulation actually says*: when must a customer receive the Key Facts Statement, when does an account become dormant, at what hours may a bank telemarket? The answers sit across 12 long documents (556 pages, over 800,000 characters). Several are bilingual English–Arabic PDFs, some headings cannot be extracted, and the **retail and SME consumer-protection rules use almost identical wording** while applying to different customers. A general chatbot may answer from memory, mix the two rulebooks, or cite the wrong article.
+Banking regulations are long and hard to search. The twelve documents in RuleScope add up to 556 pages. Several are printed in English and Arabic side by side, which breaks normal text extraction. The rules for individual customers and for small businesses (SMEs) use almost the same words but apply to different people.
 
-RuleScope controls each stage:
+A general chatbot can answer from out-of-date memory, quote the rule for the wrong type of customer, or point to the wrong article. RuleScope avoids this by working in clear steps:
 
-- extract every PDF locally, keep tables, drop Arabic text, contents pages and running headers;
-- standardise every article heading, and **rebuild headings the PDF layout lost** from the clause numbering;
-- cut the text **by article**, never across two articles, with a context header on every chunk;
-- keep retail and SME rules apart with a **metadata filter**, not a prompt;
-- refuse **before generation** when nothing relevant is retrieved;
-- **rerank** 20 candidates down to 5;
-- generate only structured claims with exact quotes;
-- **verify every quote in code**, including that every number in it appears in the source.
+- clean the official text and repair article headings the PDFs lost;
+- cut the text at every article, so no piece mixes two articles;
+- work out whether the question is about individuals or SMEs, and search only the right rules;
+- stop early if nothing relevant is found;
+- re-check the best matches so the one that answers the question comes first;
+- let the AI answer only with short points, each backed by a quote;
+- check every quote, and every number in it, in code before anything is shown.
 
 ## Why RAG
 
-Regulations change, and a model's memory is neither current nor citable. Retrieval-augmented generation keeps every answer tied to the frozen regulation text, so each claim can point to the article and quote it came from. It also makes failure explicit: when nothing relevant is retrieved, or no quote can be verified, the workflow refuses instead of answering from memory.
+RAG (retrieval-augmented generation) means the AI first **looks up** the relevant text and then answers **only from what it found**, instead of relying on what it remembers. For regulations this matters for two reasons. Rules change, so memory goes out of date. And every answer can point to the article it came from, so anyone can check it. When nothing relevant is found, the system refuses instead of making something up.
+
+## Key terms
+
+| Term | Plain meaning |
+|---|---|
+| Chunk | A small piece of a regulation (about one page) that can be searched |
+| Embedding | A list of numbers that captures the meaning of a piece of text, so similar meanings can be found |
+| Similarity score | How close a piece of text is in meaning to the question (higher is closer) |
+| Reranker | A second, more careful check that reads the question and each passage together and picks the best ones |
+| Precision@1 (P@1) | How often the very first result is the right article |
+| Hit@5 | How often the right article is anywhere in the top five results |
+| MRR | A score for how high the right article appears on average (1.0 means always first) |
+| Frozen test set | Test questions fixed before any results were seen, and never changed afterwards |
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A[12 regulation PDFs<br/>CBUAE Rulebook] --> B[Local PDF to markdown<br/>pymupdf4llm + cleaning]
-    B --> C[Article headings standardised<br/>lost headings rebuilt]
-    C --> D[Article-aware chunks<br/>350 tokens · 50 overlap<br/>+ context header]
-    D --> E[Nebius Qwen3<br/>embeddings]
-    E --> F[(Pinecone<br/>rulescope · fixed / article)]
-
-    Q[User question] --> G{Audience guard<br/>SME or consumer?}
-    G --> H[Pinecone dense retrieval<br/>top 20 · metadata filter]
+    A[Official regulation PDFs] --> B[Convert to text, keep tables]
+    B --> C[Clean text and repair article headings]
+    C --> D[Cut at every article]
+    D --> E[Turn each piece into an embedding]
+    E --> F[(Store in Pinecone)]
+    Q[Your question] --> G[Individual or SME question?]
+    G --> H[Find the 20 closest pieces in the right rules]
     F -.-> H
-    H --> I{Best score<br/>≥ 0.53?}
-    I -->|no| R[Refusal]
-    I -->|yes| J[Pinecone reranker<br/>bge-reranker-v2-m3 · top 5]
-    J --> K[Nebius Qwen3<br/>structured claims + quotes]
-    K --> L[Validation in code<br/>quote in source · numbers match<br/>label repair · duplicates]
-    L --> M{Any claim<br/>verified?}
-    M -->|no| R
-    M -->|yes| N[Streamlit Answer<br/>and Audit Trail]
+    H --> I{Close enough?}
+    I -->|no| R[Refuse]
+    I -->|yes| J[Reranker keeps the best 5]
+    J --> K[AI writes short points, each with a quote]
+    K --> L[Code checks every quote and number]
+    L -->|nothing checks out| R
+    L -->|verified| M[Answer and Audit Trail]
 ```
 
-The production LangGraph:
+The answering workflow is deliberately small:
 
 ```text
-START → retrieve (top 20, audience filter)
-          → gate
-              ├─ best score < 0.53 → END                         REFUSED (no model call)
-              └─ enough evidence → rerank (top 5) → generate → validate
-                                                        ├─ no verified claim → END   REFUSED
-                                                        └─ verified claims → END     ANSWER + citations
+START → find 20 closest pieces (only in the right rules)
+  → is the best one close enough (score ≥ 0.53)?
+       ├─ no  → END                                        REFUSED
+       └─ yes → keep the best 5 → AI writes points → check every quote
+                                                    ├─ none check out → END   REFUSED
+                                                    └─ checked → END          VERIFIED
 ```
 
-The app, the demo and both evaluations call the same `answer()` function, so what is measured is what users get.
+There is no query rewriting, agent loop, or second hidden way of answering. The app and the tests use the same `answer()` function, so what was measured is exactly what users get.
 
 ## Technology stack
 
-- **Python 3.12** with **uv** for environments and dependencies
-- **pymupdf4llm**: local PDF → markdown, keeping tables and headings
-- **LangChain**: token-aware text splitting, embedding and vector-store integrations, structured output
-- **LangGraph**: the retrieve → gate → rerank → generate → validate workflow
-- **Nebius Token Factory** (OpenAI-compatible API): Qwen3 embeddings and generation
-- **Pinecone** (serverless): dense vector storage, metadata filtering, and the hosted `bge-reranker-v2-m3` reranker
-- **rapidfuzz**: fuzzy quote matching in the validator
-- **Streamlit**: the user interface
+- **Python 3.12** with **uv** — the programming language, and a tool that installs the exact same package versions on any computer
+- **pymupdf4llm** — turns PDFs into text on your own computer while keeping tables and headings
+- **LangChain** — ready-made parts for cutting text, connecting to the AI models and the database, and getting answers in a fixed format
+- **LangGraph** — runs the answering steps in order, with a clear "stop and refuse" branch
+- **Nebius Token Factory** — hosts the Qwen3 AI models that create embeddings and write answers
+- **Pinecone** — the search database; it also hosts the reranker
+- **rapidfuzz** — compares the AI's quote with the source text to confirm it is really there
+- **Streamlit** — the web app
 
-No guardrail library, query rewriting, BM25 or hybrid search, agent loop, authentication layer or database is part of the project.
+No guardrail library, keyword search, agent loop, login system or other database is used.
 
 ## Corpus
 
-Twelve documents from the public **CBUAE Rulebook**, listed with their official page and PDF links in [`data/corpus_manifest.csv`](data/corpus_manifest.csv):
+The search covers **12 regulations from the public Central Bank of the UAE (CBUAE) Rulebook**:
 
-| Group | Documents |
-|---|---|
-| Retail customer protection | Consumer Protection Regulation · Consumer Protection Standards · Regulation 29/2011 on Bank Loans · its Clarifications and Guidelines Manual · Mortgage Loans Regulation |
-| Specific topics | Dormant Accounts and Unclaimed Funds · Ombudsman Unit · Telemarketing |
-| Payments | Retail Payment Services and Card Schemes · Stored Value Facilities |
-| Deliberate test cases | SME Customer Protection (near-identical wording to the retail rules) · Guidance Note on AI and Machine Learning |
+- **Individual customer protection:** the Consumer Protection Regulation and its Standards, the bank loans regulation (29/2011) and its clarifications manual, and the mortgage loans regulation.
+- **Specific topics:** dormant accounts and unclaimed funds, the banking ombudsman, and telemarketing.
+- **Payments:** retail payment services and card schemes, and stored value facilities (e-wallets).
+- **Two deliberate test cases:** the SME Customer Protection Regulation, whose wording closely matches the individual-customer rules, and the guidance note on the use of AI.
 
-**The PDFs and their extracted text are not in this repository.** The Rulebook permits personal, non-commercial download with the © notice; `step0_download.py` rebuilds the corpus from the official links and records the retrieval date. © Central Bank of the UAE.
+The list of documents, with titles, effective dates and official links, is in [`data/corpus_manifest.csv`](data/corpus_manifest.csv). The PDFs and their text are **not** stored in this repository: the Rulebook allows personal, non-commercial download with credit, so [`step0_download.py`](step0_download.py) downloads them again from the official links. © Central Bank of the UAE.
 
-## Download (`step0_download.py`)
+## Ingestion and cleaning
 
-Downloads each PDF listed with `include = yes`, checks that it really is a PDF (`%PDF` header) with selectable text, waits 2 seconds between requests, writes the retrieval date into the manifest and a status report to `reports/download_report.csv`. Result: **12/12 OK**.
+The download step fetches only the listed files, checks that each one is a real PDF with readable text, and pauses between downloads. All twelve passed.
 
-## Ingestion and cleaning (`step1_ingest.py`)
+The cleaning step turns each page into text and then:
 
-`pymupdf4llm` reads each page as markdown (no OCR). The cleaner removes formatting tags (`<u>`, `<sup>`, `**`, `<br>`), **Arabic text** from bilingual pages, table-of-contents rows, and short lines repeated on at least 60% of pages (running headers and footers).
+- removes formatting marks, the Arabic text on bilingual pages, contents pages, and headers and footers repeated on most pages;
+- rewrites every article heading in one standard form, such as `## Article 7: Title`, however the PDF wrote it.
 
-Every article heading, however it is written (`Article 7`, `Article (7)`, `ARTICLE 7:`), is rewritten as `## Article 7: Title`. Titles are cleaned of numbering that bilingual layouts glue onto them (`Business Conduct : 5 5.1 Responsible…` → `Business Conduct`).
+**Repairing lost headings.** In one 162-page document, the headings for Articles 2 and 3 could not be read from the PDF, so 76 pieces were wrongly labelled "Article 1: Definitions". The rules inside those articles are still numbered, for example `2.1.1.19`, so the program adds the missing "Article 2" heading just before the first rule numbered 2.x. It does this only when that article number is missing, so it can never invent an extra article. "Definitions" went from **76 pieces to 3**.
 
-**Rebuilding lost headings.** In the Consumer Protection Standards, the headings of Articles 2 and 3 cannot be extracted, so 76 chunks were labelled "Article 1: Definitions". Their clauses are still numbered (`2.1.1.19 …`), so a second pass inserts `## Article 2` before the first clause numbered `2.x`, **only for a number missing from the sequence** and never for an article already found. Definitions dropped from **76 chunks to 3**.
+## Chunking experiment: fixed vs. article-aware
 
-A report (`reports/ingest_report.csv`) records pages, characters, articles, tables and empty pages per regulation.
+The text was cut into pieces in two ways, so they could be compared fairly. Both use pieces of about 350 tokens (roughly 1,500 characters), and every piece starts with a short label saying where it comes from, for example `[Consumer Protection Standards | Article 2 > 2.1.3 …]`.
 
-## Chunking experiment: fixed vs article-aware (`step2_chunk.py`)
+- **Fixed-size:** cut every 350 tokens, wherever that lands.
+- **Article-aware (used in production):** cut at every article first, then split only the long articles.
 
-Two strategies, each with ~350-token chunks and 50-token overlap. Every chunk starts with a context header such as `[Consumer Protection Standards | Article 2 > 2.1.3 General Provisions for Credit / Financing Products]`.
+| Method | Pieces | Pieces that mix two articles | Pieces labelled with an article |
+|---|---:|---:|---:|
+| Fixed-size | 608 | 35 | 95% |
+| Article-aware | 679 | **0** | 96% |
 
-| Strategy | Chunks | Chunks mixing two articles | Labelled with an article | Median size |
-|---|---:|---:|---:|---:|
-| Fixed-size | 608 | 35 | 95% | ~1,550 chars |
-| Article-aware (cut at every article, long articles split further) | 679 | **0** | 96% | ~1,480 chars |
+The effect on search results is shown in the retrieval experiment below.
 
-The unlabelled remainder is genuine preamble before Article 1.
+## Embeddings and vector retrieval
 
-## Embeddings and retrieval (`step3_index.py`)
+Each piece is turned into an embedding of 4,096 numbers by the `Qwen/Qwen3-Embedding-8B` model on Nebius, and stored in a Pinecone index called `rulescope`. The two cutting methods are stored separately so they can be tested side by side. Every piece is stored with its labels: regulation, article, sub-section, reference, effective date and official link.
 
-Nebius serves `Qwen/Qwen3-Embedding-8B` at **4,096 dimensions**. Pinecone stores the vectors in the `rulescope` index, one namespace per chunking strategy, emptied before each upload so reruns never mix versions. Every vector carries application-owned metadata: chunk ID, regulation ID and title, article, sub-section, reference, effective date and official page URL.
+When a question comes in, the system:
 
-**Audience guard.** A question mentioning SME, small and medium, business, company, enterprise or corporate is an SME question: it searches with a Pinecone filter that excludes the retail-only regulations. Any other question excludes the SME regulation. The other nine regulations are searchable by both.
-
-## Reranking
-
-Pinecone's hosted `bge-reranker-v2-m3` cross-encoder reads the question together with each of the 20 candidates and keeps the best 5, labelled S1–S5 for the model.
+- decides who it is about: if it mentions SME, business, company, enterprise or corporate, it searches only the business rules; otherwise it searches only the individual-customer rules (the other nine regulations are always included);
+- finds the 20 closest pieces;
+- refuses if even the best score is below 0.53;
+- uses Pinecone's hosted reranker (`bge-reranker-v2-m3`) to keep the best 5.
 
 ## LangChain and LangGraph roles
 
-LangChain provides the plumbing: token-aware splitting, the OpenAI-compatible embedding and chat adapters pointed at Nebius, the Pinecone vector store with metadata filters, and structured output. Chunk text travels with application-owned metadata (regulation, article, sub-section, reference, effective date, URL, chunk ID).
+**LangChain** does the plumbing: cutting text by tokens, connecting to the Nebius models and the Pinecone database, filtering by labels, and making the AI reply in a fixed format.
 
-LangGraph owns control flow. Each stage is a small node that reads and writes one shared state, and the gate's refusal is an explicit branch rather than a prompt suggestion, so weak evidence cannot fall through to generation. The same state feeds the Audit Trail. The UI stays thin: `app.py` only calls `answer()` in `step4_rag.py`; there is no second RAG path.
+**LangGraph** controls the order of the steps. Each step is a small, separate function that writes into one shared record. The "not close enough, refuse" decision is a real branch in the code, not just an instruction to the AI. That same record is what the Audit Trail displays. The web app only calls `answer()`, so there is one way of answering, not two.
 
-## Generation (`step4_rag.py`)
+## Generation
 
-Answers use `Qwen/Qwen3-30B-A3B-Instruct-2507` via Nebius at temperature 0, with a 60-second timeout and 2 retries, and **structured output**. The model returns a list of claims, each with:
-
-- `statement`: one short factual statement;
-- `source`: the label of the supporting passage (S1–S5);
-- `quote`: words copied exactly from that passage.
-
-The prompt also asks the model to prefer rules over definitions, keep SME and retail rules apart, give no personal advice and return no claims when the sources do not answer.
+Answers are written by `Qwen/Qwen3-30B-A3B-Instruct-2507` on Nebius, set to be as consistent as possible (temperature 0), with a 60-second time limit and two retries. The AI receives the question and the five best passages, labelled S1 to S5. It must reply in a fixed format: a list of short points, each with the label of the passage it relies on and an exact quote from it. It is told to prefer actual rules over definitions, keep business and individual rules apart, give no personal advice, and return nothing if the passages do not answer the question.
 
 ## Claim-level citations
 
-Citation provenance is controlled by the application, not the model. Each quote is normalised (case, spacing, curly quotes, markdown symbols) and scored against **all five** passages:
+The program, not the AI, decides which quotes are real. Each quote is compared with all five passages. A point is kept only if:
 
-- an exact match scores 100; otherwise `rapidfuzz.partial_ratio` scores the best-matching stretch, and a claim needs **≥ 90**;
-- **number rule:** every number in the quote must appear in the passage. In testing, fuzzy matching alone let "1 days" pass for "3 days";
-- an exact match always wins, and ties go to the source the model named;
-- **label repair:** a real quote attributed to the wrong passage is re-attributed to the one that contains it;
-- **duplicate removal:** near-identical statements (token-set similarity ≥ 90) are shown once;
-- quotes shorter than 15 characters are rejected;
-- regulation, article, reference, effective date and URL always come from stored metadata.
+- its quote matches a passage exactly, or almost exactly (a score of at least 90 out of 100, to allow for small differences such as curly apostrophes);
+- **every number in the quote also appears in the passage** — in testing, near-matching alone let "1 days" pass for "3 days", so numbers must match exactly;
+- it is at least 15 characters long and does not repeat an earlier point.
 
-Every repair, approximate match and dropped claim is recorded and shown in the Audit Trail.
+If the AI quotes the right words but names the wrong passage, the program corrects the label. For every point kept, the app shows the regulation and article, sub-section, reference and effective date, the checked quote, and the official link. The AI cannot invent or change any of these details; they come from the stored labels.
 
 ## Refusal behavior
 
-RuleScope refuses in two places:
+RuleScope refuses in two places: before the AI is called, when nothing found is close enough (score below 0.53), and after checking, when no quote can be verified. The refusal message is:
 
-1. **Before generation**, when the best similarity score is below `MIN_SCORE = 0.53`. This needs no model call.
-2. **After validation**, when no claim survives the quote check.
+> I couldn't verify that from the Central Bank regulations in RuleScope.
+
+In testing it refused **all 6** off-topic questions and wrongly refused **none** of the 31 real ones. Five off-topic questions (such as the VAT rate) were stopped at the first check without calling the AI. One question about crypto money-laundering rules from a different regulator looked relevant and passed the first check, but was refused at the second, because no quote supported an answer.
+
+## Retrieval ablation
+
+This experiment tests which parts actually help. Each set-up was run on the same 31 questions with the same filters, changing one thing at a time. A result counts as correct only if it is from the right regulation **and** the right article.
+
+| Set-up | Right article first (P@1) | MRR | Right article in top 5 | Right regulation first | Typical search time |
+|---|---:|---:|---:|---:|---:|
+| Fixed pieces | 58.1% | 0.617 | 71.0% | 80.6% | 0.7s |
+| Fixed pieces + reranker | 58.1% | 0.668 | 77.4% | 90.3% | 2.2s |
+| Article pieces | 64.5% | 0.729 | 87.1% | 90.3% | 0.7s |
+| **Article pieces + reranker** | **93.5%** | **0.944** | **96.8%** | **96.8%** | 1.9s |
+
+Before seeing any results, the rule was set that each feature must improve "right article first" by at least 5 points to be kept. The reranker added **14.5 points** and article-aware cutting added **20.9 points** on average, so **both were kept**.
+
+The most interesting finding: the reranker added **nothing** on fixed pieces but **29 points** on article pieces. A fixed piece that mixes two articles carries only one label, so even when the reranker picks it, the citation can be wrong. Clean, article-sized pieces are what let the reranker work. This does not prove rerankers always help; it shows they helped here.
+
+Two pairs of documents repeat the same article numbers (the bank loans regulation and its clarifications manual; the Consumer Protection Regulation and its Standards). Counting either document in a pair as correct, the scores are 64.5% for the baseline and 96.8% for the final set-up, so the improvement is not caused by these pairs.
 
 ## Evaluation
 
-The decision rules were set **before** results were inspected. The frozen test set (`eval/questions.jsonl`) has **37 questions**:
+The questions, scoring rules and decision rules were fixed **before** any results were seen. The test set (`eval/questions.jsonl`) has **37 questions**:
 
-- **31 generated:** drafted by the LLM from one known chunk each (2–4 per regulation, rule-bearing articles only, everyday wording, a different article per question), so each has a known **regulation, article and reference answer**; reviewed by hand, and four rewritten to remove ambiguity;
-- **6 out of scope:** best savings rate, VAT rate, golden visa, a bank's share price, a poem, and crypto AML rules from another regulator.
+- **31 answerable questions**, each drafted by the AI from one known article (two to four per regulation, in everyday wording) and reviewed by hand; four were rewritten to remove ambiguity. Each has a known correct regulation, article and reference answer.
+- **6 off-topic questions** that should be refused, such as the VAT rate or applying for a visa.
 
-### Retrieval (`step5_eval_retrieval.py`)
+Search and answers were tested separately, so a mistake can be traced to the step that caused it.
 
-Each question is searched once per strategy; the "with" and "without reranker" set-ups reuse the same 20 candidates, so the reranker is the only difference. A chunk is correct when it comes from the expected regulation **and** article. "Family" scores also accept the twin document at the same article (Regulation 29/2011 ↔ its Clarifications; Consumer Protection Regulation ↔ its Standards).
-
-| Set-up | P@1 | MRR | Hit@5 | Doc@1 | Family P@1 | Family Hit@5 | Median time |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Fixed, no reranker | 58.1% | 0.617 | 71.0% | 80.6% | 64.5% | 80.6% | 0.69s |
-| Fixed + reranker | 58.1% | 0.668 | 77.4% | 90.3% | 64.5% | 80.6% | 2.18s |
-| Article-aware, no reranker | 64.5% | 0.729 | 87.1% | 90.3% | 67.7% | 90.3% | 0.67s |
-| **Article-aware + reranker** | **93.5%** | **0.944** | **96.8%** | **96.8%** | **96.8%** | **96.8%** | 1.92s |
-
-**Decision rules:** each feature must improve P@1 by at least 5 points.
-
-- Reranker: **+14.5 points** (average over both strategies) → **kept**.
-- Article-aware chunking: **+20.9 points** (average over both reranker settings) → **kept**.
-
-**The interaction is the finding:** the reranker added **0 points** on fixed chunks and **+29 points** on article-aware chunks. A fixed chunk that spans two articles carries only one label, so even a correct rerank can return the wrong citation. Structure-aware chunking is what makes reranking effective here.
-
-**Threshold calibration.** Best similarity per question (article-aware namespace):
-
-- answerable questions: lowest **0.545**;
-- out of scope: crypto AML **0.613**, savings rate **0.517**, golden visa **0.477**, VAT **0.474**, poem **0.464**, share price **0.460**.
-
-At the original `0.60`, three answerable questions were wrongly refused. The ranges **overlap** (the crypto AML question looks on-topic), so no threshold separates them. `MIN_SCORE = 0.53` sits between 0.517 and 0.545: it refuses the five clearly off-topic questions instantly and never refuses a real one. The overlapping case is left to validation.
-
-### Answers (`step6_eval_answers.py`)
-
-Full pipeline, production settings, all 37 questions. Correctness is graded by an LLM judge comparing each answer with the reference answer (correct / partial / wrong), with a one-line reason per verdict.
-
-| Measure | Result |
+| Final quality check | Result |
 |---|---:|
-| Out-of-scope questions refused | **6/6** |
-| Answerable questions wrongly refused | **0/31** |
-| First citation = expected article | **29/31** |
-| Any citation = expected article (twin documents allowed) | **30/31** |
-| Judge: correct / partial / wrong | **30 / 1 / 0** |
-| Claims written by the model | 77 |
-| Claims dropped by validation | 1 |
-| Citation labels repaired | 1 |
-| Latency median / slowest | **8.6s / 43.1s** |
-| Median per stage | retrieve 2.7s · rerank 1.3s · generate 4.0s |
+| Right article first (starting point → final) | **58.1% → 93.5%** |
+| MRR / right article in top 5 (final) | **0.944 / 96.8%** |
+| Off-topic questions refused | **100% (6/6)** |
+| Real questions wrongly refused | **0% (0/31)** |
+| First citation is the expected article | **93.5% (29/31)** |
+| Answers judged correct | **30 correct · 1 partial · 0 wrong** |
+| AI points removed / corrected by the checker | **1 / 1 out of 77** |
+| Typical / slowest full answer time | **8.6s / 43.1s** |
 
-The crypto AML question passed the similarity gate and was refused by validation ("no claim could be verified"): **two refusal layers, each catching what the other misses.**
+Answers were graded by an AI judge comparing each one with the reference answer. Because the judge comes from the same model family as the answering AI, it may be lenient, so its reasons were also checked by hand. There is no separate "faithfulness" score: the program already checks every quote shown, so the more useful figure is how often the AI **tried** to say something it could not support (2 out of 77). Full results are in `reports/retrieval_eval.csv` and `reports/answer_eval.csv`.
 
-Full outputs: `reports/retrieval_eval.csv`, `reports/retrieval_summary.csv`, `reports/answer_eval.csv`.
+## Latency limitation
 
-### What changed during the build
-
-| Problem found | How it was found | Fix |
-|---|---|---|
-| Fixed chunks only 60% labelled (vs 96%) | A metric that made no sense | LangChain's `add_start_index` treats the token overlap as characters and returns −1. Reproduced in isolation; replaced with a sequential position search → 95% |
-| KFS answer cited "Article 1: Definitions" | Chunks-per-article count (76 in Definitions) | Rebuild lost headings from clause numbers → 3 |
-| Retail answers cited the SME regulation, and the reverse | Reading the demo answers | Audience guard as a Pinecone filter (the prompt alone failed) |
-| Good claims dropped over a curly apostrophe | Validation notes | Fuzzy matching ≥ 90, plus the number rule |
-| Three real questions refused | Threshold calibration | `MIN_SCORE` 0.60 → 0.53 |
-
-**Caveat:** these fixes were made while building and are evaluated on the same frozen set. A hand-written held-out set is listed under Next steps.
-
-### Why not RAGAS here
-
-The test set records the correct article for every question, so retrieval is measured **exactly** (P@1, MRR, Hit@5) rather than estimated by an LLM. Faithfulness is **enforced in code** for every displayed claim, so the more useful number is how often the model tried to say something unsupported (2 of 77). Refusal accuracy, essential for a compliance tool, is not covered by RAGAS.
-
-## Latency
-
-Median **8.6s**; generation with the 30B model is the slowest stage (4.0s median). One answer took 43.1s, a provider spike that the 60-second timeout bounds. Questions refused by the gate return in a few seconds because the model is never called.
+A typical answer takes **8.6 seconds**: about 2.7s to search, 1.3s to rerank and 4.0s for the AI to write. One answer took 43 seconds because the model provider was slow; a 60-second time limit prevents longer waits. Questions refused at the first check come back in a few seconds because the AI is never called. The app shows a progress spinner, and the Audit Trail shows the time for each step.
 
 ## Privacy and security limitations
 
-RuleScope answers from public regulations only and needs no customer data. Even so:
+RuleScope answers from public regulations and does not need any customer data. Even so:
 
-- Do not type personal or account details into questions. There is no detection or masking of personal data.
-- Each question is sent to Nebius (embedding and generation) and its embedding to Pinecone (search and reranking). Retrieved regulation text is sent to Nebius for generation.
-- Questions and answers are not stored by the application, but the providers' own retention terms apply.
-- There is no authentication, access control, audit store or compliance certification.
-- Do not deploy it for a bank's internal policies or customer-facing use without a separate privacy, security, data-residency and threat-model review. A production version would add personal-data and prompt-injection checks and could use self-hosted models.
+- do not type personal or account details into questions; nothing detects or hides them;
+- each question is sent to Nebius (to create an embedding and write the answer) and to Pinecone (to search);
+- the app does not store questions or answers, but the providers' own terms apply;
+- there is no login, access control, audit log or compliance certification;
+- do not use it for a bank's internal documents or for real customers without a proper privacy and security review.
 
-API keys must never be committed, displayed in the UI or printed in logs.
-
-## Known limitations
-
-- **Generated questions may favour article-aware chunking**, since they were drafted from article chunks. Family scores (64.5% vs 96.8%) show the gap is not caused by twin documents.
-- **Self-judging:** correctness is judged by the same model family; verdicts were spot-checked by hand.
-- **Keyword audience guard:** "I run a shop" is treated as a retail question.
-- **Superseded rules:** an older regulation can be quoted accurately while a newer one governs. For example, telemarketing hours differ between Regulation 29/2011 and the 2026 Telemarketing Regulation. Effective dates are shown; conflicts are not yet detected.
-- **Rebuilt headings have numbers but no titles** (Standards Articles 2 and 3).
-- **Annexes** after the last article of the Retail Payments regulation are labelled as that article.
-- **Small margin** in the refusal gate (0.517 vs 0.545).
-- **Point-in-time data:** regulations change; check the retrieval date in the manifest.
-- No offline unit tests yet.
+API keys must never be uploaded, shown in the app, or printed in logs.
 
 ## Local setup
 
-Requirements: Python 3.12, [uv](https://docs.astral.sh/uv/), a Nebius Token Factory API key and a Pinecone API key.
+You need:
+
+- Python 3.12 and [uv](https://docs.astral.sh/uv/)
+- a Nebius Token Factory API key and a Pinecone API key
+
+In the project folder:
 
 ```powershell
-git clone https://github.com/liajohn18/rulescope.git
-cd rulescope
 uv sync
-Copy-Item .env.example .env      # then put your real keys in .env
+Copy-Item .env.example .env
 ```
 
-`.env` must contain `NEBIUS_API_KEY` and `PINECONE_API_KEY`. It is listed in `.gitignore` and must never be committed. All settings (paths, models, chunk size, index name, `STRATEGY`, `CANDIDATES`, `TOP_K`, `USE_RERANKER`, `MIN_SCORE`) live in `common.py`.
+Open `.env` and add your `NEBIUS_API_KEY` and `PINECONE_API_KEY`. This file is ignored by git and must never be uploaded. All settings (file locations, models, piece size, number of results, the refusal score) are in [`common.py`](common.py).
+
+Rebuild the documents and the search index:
+
+```powershell
+uv run python step0_download.py         # download the 12 PDFs
+uv run python step1_ingest.py           # clean the text
+uv run python step2_chunk.py            # cut into pieces, both ways
+uv run python step3_index.py            # store in Pinecone
+```
+
+Run the tests:
+
+```powershell
+uv run python step5_eval_retrieval.py   # search experiment and refusal score
+uv run python step6_eval_answers.py     # full answer test
+```
 
 ## How to run
 
+Start the app from the project folder:
+
 ```powershell
-uv run python step0_download.py         # 12 PDFs -> data/pdfs/ (+ download report)
-uv run python step1_ingest.py           # PDFs -> data/clean/*.md (+ ingest report)
-uv run python step2_chunk.py            # fixed and article-aware chunks
-uv run python step3_index.py            # embed + upload to Pinecone
-uv run python step4_rag.py              # 5 demo questions in the terminal
-uv run python step5_eval_retrieval.py   # 2x2 retrieval comparison + gate calibration
-uv run python step6_eval_answers.py     # full-pipeline answer evaluation
-uv run streamlit run app.py             # the app at http://localhost:8501
+uv run streamlit run app.py
 ```
 
-Try: *"When must a bank give a customer the Key Facts Statement?"* (Consumer Protection Standards, Article 2), *"Does a bank have to give an SME a Key Facts Statement?"* (switches to SME rules only), *"What hours are banks allowed to make telemarketing calls?"*, and *"Which bank has the best credit card rewards?"* (refused; low scores visible in the Audit Trail).
+Then open the address Streamlit shows (usually `http://localhost:8501`). Try these:
+
+- *"When must a bank give a customer the Key Facts Statement?"* — answered from the Consumer Protection Standards, Article 2. Open **Audit Trail** to see the 20 passages found and the 5 kept.
+- *"Does a bank have to give an SME a Key Facts Statement?"* — the search switches to the business rules only.
+- *"Which bank has the best credit card rewards?"* — refused, with low scores visible in the Audit Trail.
+
+Keep the terminal open while the app is running.
 
 ## Project structure
 
+- `step0`–`step4` — the answering system, in the order it runs
+- `make_questions.py`, `step5`, `step6` — the frozen tests
+- `reports/` — test results
+
 ```text
 rulescope/
-├── app.py                     # Streamlit UI: Answer + Audit Trail
+├── app.py                     # the web app: Answer + Audit Trail
 ├── common.py                  # all settings and shared helpers
-├── step0_download.py          # manifest -> PDFs, checks, retrieval dates
-├── step1_ingest.py            # PDF -> clean markdown, article headings, lost headings rebuilt
-├── step2_chunk.py             # fixed vs article-aware chunking
-├── step3_index.py             # Qwen3 embeddings -> Pinecone namespaces
-├── step4_rag.py               # LangGraph: retrieve -> gate -> rerank -> generate -> validate
-├── make_questions.py          # draft, review and freeze the test set
-├── step5_eval_retrieval.py    # P@1, MRR, Hit@5, decisions, gate calibration
-├── step6_eval_answers.py      # refusals, citations, LLM judge, grounding, latency
-├── check_labels.py            # helper: chunks per article, to spot missed headings
-├── data/corpus_manifest.csv   # the 12 regulations with official links (PDFs not committed)
-├── eval/questions.jsonl       # frozen 37-question test set
-├── reports/                   # download, ingest and evaluation reports
-├── .env.example               # required key names, no values
-└── pyproject.toml / uv.lock   # dependencies
+├── step0_download.py          # download the PDFs and check them
+├── step1_ingest.py            # clean the text, repair article headings
+├── step2_chunk.py             # cut into pieces: fixed vs by article
+├── step3_index.py             # create embeddings and store in Pinecone
+├── step4_rag.py               # answer: find → check → rerank → write → verify
+├── make_questions.py          # draft, review and freeze the test questions
+├── step5_eval_retrieval.py    # search experiment and refusal score
+├── step6_eval_answers.py      # refusals, citations, correctness, timing
+├── check_labels.py            # helper: count pieces per article
+├── data/corpus_manifest.csv   # the 12 regulations and official links (no PDFs)
+├── eval/questions.jsonl       # the 37 frozen test questions
+├── reports/                   # test results
+├── docs/screenshots/          # images for this README
+├── .env.example               # names of the keys needed, no values
+└── pyproject.toml / uv.lock   # package list
 ```
 
 ## Learnings
 
-- **Most accuracy is won in data preparation.** Rebuilding lost headings and cutting by article did more than any model setting.
-- **Features can depend on each other.** The reranker was worthless on fixed chunks and decisive on article-aware chunks; testing them separately would have discarded it.
-- **Prompts ask, code enforces.** The prompt did not keep SME and retail rules apart; a metadata filter did. Quotes and numbers are checked by code, not by another model.
-- **Decision rules belong before the results.** The +5-point rule and the frozen test set make the 58% → 94% claim credible.
-- **A metric that makes no sense is a bug report.** The 60% vs 96% labelling gap led to a library bug that no error message would have shown.
-- **Refusal is part of the product,** and it needs layers: a calibrated gate for the obvious cases, validation for the near-misses.
+- **Most of the accuracy came from preparing the data well.** Repairing lost headings and cutting by article did more than any model setting.
+- **Improvements can depend on each other.** The reranker did nothing on fixed pieces and a lot on article pieces. Testing it only on the starting set-up would have thrown it away.
+- **Instructions ask; code enforces.** Telling the AI to keep business and individual rules apart did not work; a search filter did. Quotes and numbers are checked by the program, not by another AI.
+- **The program must own the citations.** The AI sometimes quotes the right words under the wrong label; only a check in code catches and fixes this safely.
+- **A number that looks wrong is a clue.** One method labelled 60% of pieces and the other 96%, from the same headings. That led to a bug in a library function, which was reproduced, fixed, and confirmed (95%).
+- **Refusing is part of the product.** A first check stops obvious off-topic questions cheaply; the quote check stops the ones that only look relevant.
+- **Limits are stated openly.** The test questions were drafted from article pieces and may favour that method; the judge comes from the same model family; the business/individual check uses keywords; and an older regulation can be quoted correctly while a newer one applies (telemarketing calling hours differ between a 2011 rule and a 2026 rule).
 
-## Next steps
-
-- **KFS compliance checker:** upload a product's Key Facts Statement and check it against the disclosure articles.
-- **Conflict and supersession detection:** when passages from different regulations disagree, show both with their effective dates.
-- **User-selected audience** (individual or business) instead of keywords.
-- **Hand-written held-out questions:** look-alikes, cross-regulation questions and advice requests.
-- Titles for rebuilt articles, separate labels for annexes.
-- Offline unit tests for the validator, the heading rebuilder and the audience filter.
+The final settings and results should not be changed without running the tests again.
