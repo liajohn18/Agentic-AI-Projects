@@ -1,0 +1,201 @@
+customer_id,legal_name,country_code,customer_type,industry,kyc_status,risk_rating,expected_monthly_turnover_usd,source_of_funds,kyc_last_reviewed,pep_status,sanctions_screening_status
+CUST-0001,Amber Bridge Trading 001 LLC,AE,company,Food distribution,verified,low,179000.00,Operating revenue,2025-01-01,no_match,no_match
+CUST-0002,Cedar Bridge Trading 002 LLC,GB,company,Technology services,verified,low,168500.00,Trading income,2025-02-02,no_match,no_match
+CUST-0003,Desert Bridge Trading 003 LLC,SG,company,Construction,verified,low,41000.00,Service contracts,2025-03-03,no_match,no_match
+CUST-0004,Harbor Bridge Trading 004 LLC,IN,company,Textiles,verified,low,220500.00,Investment proceeds,2025-04-04,no_match,no_match
+CUST-0005,Jade Bridge Trading 005 LLC,US,company,Logistics,verified,medium,99500.00,Export revenue,2025-05-05,no_match,no_match
+CUST-0006,Meridian Bridge Trading 006 LLC,AE,company,Professional services,verified,low,224000.00,Operating revenue,2025-06-06,no_match,no_match
+CUST-0007,Northstar Bridge Trading 007 LLC,GB,company,Wholesale trade,verified,low,224000.00,Trading income,2025-07-07,no_match,no_match
+CUST-0008,Silver Bridge Trading 008 LLC,SG,company,Hospitality,verified,low,10000.00,Service contracts,2025-08-08,no_match,no_match
+CUST-0009,Summit Bridge Trading 009 LLC,IN,company,Food distribution,verified,low,214000.00,Investment proceeds,2025-09-09,no_match,no_match
+CUST-0010,Willow Bridge Trading 010 LLC,US,company,Technology services,verified,medium,207000.00,Export revenue,2025-10-10,no_match,no_match
+CUST-0011,Coral Bridge Trading 011 LLC,AE,company,Construction,verified,low,128000.00,Operating revenue,2025-11-11,no_match,no_match
+CUST-0012,Golden Bridge Trading 012 LLC,GB,company,Textiles,verified,low,180500.00,Trading income,2025-12-12,no_match,no_match
+CUST-0013,Olive Bridge Trading 013 LLC,SG,company,Logistics,verified,low,240500.00,Service contracts,2025-01-13,no_match,no_match
+CUST-0014,Sapphire Bridge Trading 014 LLC,IN,company,Professional services,verified,low,160000.00,Investment proceeds,2025-02-14,no_match,no_match
+CUST-0015,Atlas Bridge Trading 015 LLC,US,company,Wholesale trade,verified,medium,127000.00,Export revenue,2025-03-15,no_match,no_match
+CUST-0016,Bright Bridge Trading 016 LLC,AE,company,Hospitality,verified,low,107500.00,Operating revenue,2025-04-16,no_match,no_match
+CUST-0017,Cobalt Bridge Trading 017 LLC,GB,company,Food distribution,review_required,low,250000.00,Trading income,2025-05-17,no_match,no_match
+CUST-0018,Evergreen Bridge Trading 018 LLC,SG,company,Technology services,verified,low,19000.00,Service contracts,2025-06-18,no_match,no_match
+CUST-0019,Lunar Bridge Trading 019 LLC,IN,company,Construction,verified,low,149000.00,Investment proceeds,2025-07-19,no_match,no_match
+CUST-0020,Royal Bridge Trading 020 LLC,US,company,Textiles,verified,medium,127500.00,Export revenue,2025-08-20,no_match,no_match
+CUST-0021,Amber Cove Trading 021 LLC,AE,company,Logistics,verified,low,9000.00,Operating revenue,2025-09-21,no_match,no_match
+CUST-0022,Cedar Cove Trading 022 LLC,GB,company,Professional services,verified,low,14000.00,Trading income,2025-10-22,no_match,no_match
+CUST-0023,Desert Cove Trading 023 LLC,SG,company,Wholesale trade,verified,low,148000.00,Service contracts,2025-11-23,no_match,no_match
+CUST-0024,Harbor Cove Trading 024 LLC,IN,company,Hospitality,verified,low,48500.00,Investment proceeds,2025-12-24,no_match,no_match
+CUST-0025,Jade Cove Trading 025 LLC,US,company,Food distribution,verified,medium,98000.00,Export revenue,2025-01-25,no_match,no_match
+CUST-0026,Meridian Cove Trading 026 LLC,AE,company,Technology services,verified,low,106500.00,Operating revenue,2025-02-26,no_match,no_match
+CUST-0027,Northstar Cove Trading 027 LLC,GB,company,Construction,verified,low,174500.00,Trading income,2025-03-27,no_match,no_match
+CUST-0028,Silver Cove Trading 028 LLC,SG,company,Textiles,verified,low,207000.00,Service contracts,2025-04-01,no_match,no_match
+CUST-0029,Summit Cove Trading 029 LLC,IN,company,Logistics,verified,low,204000.00,Investment proceeds,2025-05-02,no_match,no_match
+CUST-0030,Willow Cove Trading 030 LLC,US,company,Professional services,verified,medium,192000.00,Export revenue,2025-06-03,no_match,no_match
+CUST-0031,Coral Cove Trading 031 LLC,AE,company,Wholesale trade,verified,low,101000.00,Operating revenue,2025-07-04,no_match,no_match
+CUST-0032,Golden Cove Trading 032 LLC,GB,company,Hospitality,verified,low,177500.00,Trading income,2025-08-05,no_match,no_match
+CUST-0033,Olive Cove Trading 033 LLC,SG,company,Food distribution,verified,low,162000.00,Service contracts,2025-09-06,no_match,no_match
+CUST-0034,Sapphire Cove Trading 034 LLC,IN,company,Technology services,verified,low,223000.00,Investment proceeds,2025-10-07,no_match,no_match
+CUST-0035,Atlas Cove Trading 035 LLC,US,company,Construction,verified,medium,140000.00,Export revenue,2025-11-08,no_match,no_match
+CUST-0036,Bright Cove Trading 036 LLC,AE,company,Textiles,verified,low,241000.00,Operating revenue,2025-12-09,no_match,no_match
+CUST-0037,Cobalt Cove Trading 037 LLC,GB,company,Logistics,verified,high,5000.00,Trading income,2025-01-10,no_match,no_match
+CUST-0038,Evergreen Cove Trading 038 LLC,SG,company,Professional services,verified,low,159000.00,Service contracts,2025-02-11,no_match,no_match
+CUST-0039,Lunar Cove Trading 039 LLC,IN,company,Wholesale trade,verified,low,191000.00,Investment proceeds,2025-03-12,no_match,no_match
+CUST-0040,Royal Cove Trading 040 LLC,US,company,Hospitality,verified,medium,247000.00,Export revenue,2025-04-13,no_match,no_match
+CUST-0041,Amber Falcon Trading 041 LLC,AE,company,Food distribution,verified,low,137500.00,Operating revenue,2025-05-14,no_match,no_match
+CUST-0042,Cedar Falcon Trading 042 LLC,GB,company,Technology services,verified,low,202000.00,Trading income,2025-06-15,no_match,no_match
+CUST-0043,Desert Falcon Trading 043 LLC,SG,company,Construction,verified,low,180000.00,Service contracts,2025-07-16,no_match,no_match
+CUST-0044,Harbor Falcon Trading 044 LLC,IN,company,Textiles,verified,low,150000.00,Investment proceeds,2025-08-17,no_match,no_match
+CUST-0045,Jade Falcon Trading 045 LLC,US,company,Logistics,verified,medium,207500.00,Export revenue,2025-09-18,no_match,no_match
+CUST-0046,Meridian Falcon Trading 046 LLC,AE,company,Professional services,verified,low,185500.00,Operating revenue,2025-10-19,no_match,no_match
+CUST-0047,Northstar Falcon Trading 047 LLC,GB,company,Wholesale trade,verified,low,241000.00,Trading income,2025-11-20,no_match,no_match
+CUST-0048,Silver Falcon Trading 048 LLC,SG,company,Hospitality,verified,low,197000.00,Service contracts,2025-12-21,no_match,no_match
+CUST-0049,Summit Falcon Trading 049 LLC,IN,company,Food distribution,verified,low,35500.00,Investment proceeds,2025-01-22,no_match,no_match
+CUST-0050,Willow Falcon Trading 050 LLC,US,company,Technology services,verified,medium,68500.00,Export revenue,2025-02-23,no_match,no_match
+CUST-0051,Coral Falcon Trading 051 LLC,AE,company,Construction,verified,low,131000.00,Operating revenue,2025-03-24,no_match,no_match
+CUST-0052,Golden Falcon Trading 052 LLC,GB,company,Textiles,verified,low,196000.00,Trading income,2025-04-25,no_match,no_match
+CUST-0053,Olive Falcon Trading 053 LLC,SG,company,Logistics,verified,low,69500.00,Service contracts,2025-05-26,no_match,no_match
+CUST-0054,Sapphire Falcon Trading 054 LLC,IN,company,Professional services,review_required,low,218500.00,Investment proceeds,2025-06-27,no_match,no_match
+CUST-0055,Atlas Falcon Trading 055 LLC,US,company,Wholesale trade,verified,medium,227000.00,Export revenue,2025-07-01,no_match,no_match
+CUST-0056,Bright Falcon Trading 056 LLC,AE,company,Hospitality,verified,low,120500.00,Operating revenue,2025-08-02,no_match,no_match
+CUST-0057,Cobalt Falcon Trading 057 LLC,GB,company,Food distribution,verified,low,39000.00,Trading income,2025-09-03,no_match,no_match
+CUST-0058,Evergreen Falcon Trading 058 LLC,SG,company,Technology services,verified,low,61000.00,Service contracts,2025-10-04,no_match,no_match
+CUST-0059,Lunar Falcon Trading 059 LLC,IN,company,Construction,verified,low,71000.00,Investment proceeds,2025-11-05,no_match,no_match
+CUST-0060,Royal Falcon Trading 060 LLC,US,company,Textiles,verified,medium,150000.00,Export revenue,2025-12-06,no_match,no_match
+CUST-0061,Amber Gate Trading 061 LLC,AE,company,Logistics,verified,low,47500.00,Operating revenue,2025-01-07,no_match,no_match
+CUST-0062,Cedar Gate Trading 062 LLC,GB,company,Professional services,verified,low,235000.00,Trading income,2025-02-08,no_match,no_match
+CUST-0063,Desert Gate Trading 063 LLC,SG,company,Wholesale trade,verified,low,103500.00,Service contracts,2025-03-09,no_match,no_match
+CUST-0064,Harbor Gate Trading 064 LLC,IN,company,Hospitality,verified,low,183000.00,Investment proceeds,2025-04-10,no_match,no_match
+CUST-0065,Jade Gate Trading 065 LLC,US,company,Food distribution,verified,medium,247000.00,Export revenue,2025-05-11,no_match,no_match
+CUST-0066,Meridian Gate Trading 066 LLC,AE,company,Technology services,verified,low,32500.00,Operating revenue,2025-06-12,no_match,no_match
+CUST-0067,Northstar Gate Trading 067 LLC,GB,company,Construction,verified,low,157500.00,Trading income,2025-07-13,no_match,no_match
+CUST-0068,Silver Gate Trading 068 LLC,SG,company,Textiles,verified,low,89000.00,Service contracts,2025-08-14,no_match,no_match
+CUST-0069,Summit Gate Trading 069 LLC,IN,company,Logistics,verified,low,162000.00,Investment proceeds,2025-09-15,no_match,no_match
+CUST-0070,Willow Gate Trading 070 LLC,US,company,Professional services,verified,medium,68000.00,Export revenue,2025-10-16,no_match,no_match
+CUST-0071,Coral Gate Trading 071 LLC,AE,company,Wholesale trade,verified,low,69000.00,Operating revenue,2025-11-17,no_match,no_match
+CUST-0072,Golden Gate Trading 072 LLC,GB,company,Hospitality,verified,low,115500.00,Trading income,2025-12-18,no_match,no_match
+CUST-0073,Olive Gate Trading 073 LLC,SG,company,Food distribution,verified,low,122500.00,Service contracts,2025-01-19,no_match,no_match
+CUST-0074,Sapphire Gate Trading 074 LLC,IN,company,Technology services,verified,high,8500.00,Investment proceeds,2025-02-20,no_match,no_match
+CUST-0075,Atlas Gate Trading 075 LLC,US,company,Construction,verified,medium,237500.00,Export revenue,2025-03-21,no_match,no_match
+CUST-0076,Bright Gate Trading 076 LLC,AE,company,Textiles,verified,low,181000.00,Operating revenue,2025-04-22,no_match,no_match
+CUST-0077,Cobalt Gate Trading 077 LLC,GB,company,Logistics,verified,low,153500.00,Trading income,2025-05-23,no_match,no_match
+CUST-0078,Evergreen Gate Trading 078 LLC,SG,company,Professional services,verified,low,15000.00,Service contracts,2025-06-24,no_match,no_match
+CUST-0079,Lunar Gate Trading 079 LLC,IN,company,Wholesale trade,verified,low,215000.00,Investment proceeds,2025-07-25,no_match,no_match
+CUST-0080,Royal Gate Trading 080 LLC,US,company,Hospitality,verified,medium,177500.00,Export revenue,2025-08-26,no_match,no_match
+CUST-0081,Amber Horizon Trading 081 LLC,AE,company,Food distribution,verified,low,110500.00,Operating revenue,2025-09-27,no_match,no_match
+CUST-0082,Cedar Horizon Trading 082 LLC,GB,company,Technology services,verified,low,119000.00,Trading income,2025-10-01,no_match,no_match
+CUST-0083,Desert Horizon Trading 083 LLC,SG,company,Construction,verified,low,163500.00,Service contracts,2025-11-02,no_match,no_match
+CUST-0084,Harbor Horizon Trading 084 LLC,IN,company,Textiles,verified,low,83500.00,Investment proceeds,2025-12-03,no_match,no_match
+CUST-0085,Jade Horizon Trading 085 LLC,US,company,Logistics,verified,medium,126500.00,Export revenue,2025-01-04,no_match,no_match
+CUST-0086,Meridian Horizon Trading 086 LLC,AE,company,Professional services,verified,low,241000.00,Operating revenue,2025-02-05,no_match,no_match
+CUST-0087,Northstar Horizon Trading 087 LLC,GB,company,Wholesale trade,verified,low,11500.00,Trading income,2025-03-06,no_match,no_match
+CUST-0088,Silver Horizon Trading 088 LLC,SG,company,Hospitality,verified,low,58500.00,Service contracts,2025-04-07,no_match,no_match
+CUST-0089,Summit Horizon Trading 089 LLC,IN,company,Food distribution,verified,low,66000.00,Investment proceeds,2025-05-08,no_match,no_match
+CUST-0090,Willow Horizon Trading 090 LLC,US,company,Technology services,verified,medium,111500.00,Export revenue,2025-06-09,no_match,no_match
+CUST-0091,Coral Horizon Trading 091 LLC,AE,company,Construction,review_required,low,209500.00,Operating revenue,2025-07-10,no_match,no_match
+CUST-0092,Golden Horizon Trading 092 LLC,GB,company,Textiles,verified,low,147500.00,Trading income,2025-08-11,no_match,no_match
+CUST-0093,Olive Horizon Trading 093 LLC,SG,company,Logistics,verified,low,213000.00,Service contracts,2025-09-12,no_match,no_match
+CUST-0094,Sapphire Horizon Trading 094 LLC,IN,company,Professional services,verified,low,98500.00,Investment proceeds,2025-10-13,no_match,no_match
+CUST-0095,Atlas Horizon Trading 095 LLC,US,company,Wholesale trade,verified,medium,166500.00,Export revenue,2025-11-14,no_match,no_match
+CUST-0096,Bright Horizon Trading 096 LLC,AE,company,Hospitality,verified,low,60500.00,Operating revenue,2025-12-15,no_match,no_match
+CUST-0097,Cobalt Horizon Trading 097 LLC,GB,company,Food distribution,verified,low,152500.00,Trading income,2025-01-16,no_match,no_match
+CUST-0098,Evergreen Horizon Trading 098 LLC,SG,company,Technology services,verified,low,85500.00,Service contracts,2025-02-17,no_match,no_match
+CUST-0099,Lunar Horizon Trading 099 LLC,IN,company,Construction,verified,low,191000.00,Investment proceeds,2025-03-18,no_match,no_match
+CUST-0100,Royal Horizon Trading 100 LLC,US,company,Textiles,verified,medium,188000.00,Export revenue,2025-04-19,no_match,no_match
+CUST-0101,Amber Meadow Trading 101 LLC,AE,company,Logistics,verified,low,82000.00,Operating revenue,2025-05-20,no_match,no_match
+CUST-0102,Cedar Meadow Trading 102 LLC,GB,company,Professional services,verified,low,45500.00,Trading income,2025-06-21,no_match,no_match
+CUST-0103,Desert Meadow Trading 103 LLC,SG,company,Wholesale trade,verified,low,78500.00,Service contracts,2025-07-22,no_match,no_match
+CUST-0104,Harbor Meadow Trading 104 LLC,IN,company,Hospitality,verified,low,188000.00,Investment proceeds,2025-08-23,no_match,no_match
+CUST-0105,Jade Meadow Trading 105 LLC,US,company,Food distribution,verified,medium,200000.00,Export revenue,2025-09-24,no_match,no_match
+CUST-0106,Meridian Meadow Trading 106 LLC,AE,company,Technology services,verified,low,91000.00,Operating revenue,2025-10-25,no_match,no_match
+CUST-0107,Northstar Meadow Trading 107 LLC,GB,company,Construction,verified,low,48500.00,Trading income,2025-11-26,no_match,no_match
+CUST-0108,Silver Meadow Trading 108 LLC,SG,company,Textiles,verified,low,106000.00,Service contracts,2025-12-27,no_match,no_match
+CUST-0109,Summit Meadow Trading 109 LLC,IN,company,Logistics,verified,low,209500.00,Investment proceeds,2025-01-01,no_match,no_match
+CUST-0110,Willow Meadow Trading 110 LLC,US,company,Professional services,verified,medium,149000.00,Export revenue,2025-02-02,no_match,no_match
+CUST-0111,Coral Meadow Trading 111 LLC,AE,company,Wholesale trade,verified,high,247000.00,Operating revenue,2025-03-03,no_match,no_match
+CUST-0112,Golden Meadow Trading 112 LLC,GB,company,Hospitality,verified,low,139500.00,Trading income,2025-04-04,no_match,no_match
+CUST-0113,Olive Meadow Trading 113 LLC,SG,company,Food distribution,verified,low,214500.00,Service contracts,2025-05-05,no_match,no_match
+CUST-0114,Sapphire Meadow Trading 114 LLC,IN,company,Technology services,verified,low,85500.00,Investment proceeds,2025-06-06,no_match,no_match
+CUST-0115,Atlas Meadow Trading 115 LLC,US,company,Construction,verified,medium,93500.00,Export revenue,2025-07-07,no_match,no_match
+CUST-0116,Bright Meadow Trading 116 LLC,AE,company,Textiles,verified,low,92000.00,Operating revenue,2025-08-08,no_match,no_match
+CUST-0117,Cobalt Meadow Trading 117 LLC,GB,company,Logistics,verified,low,28500.00,Trading income,2025-09-09,no_match,no_match
+CUST-0118,Evergreen Meadow Trading 118 LLC,SG,company,Professional services,verified,low,50000.00,Service contracts,2025-10-10,no_match,no_match
+CUST-0119,Lunar Meadow Trading 119 LLC,IN,company,Wholesale trade,verified,low,36500.00,Investment proceeds,2025-11-11,no_match,no_match
+CUST-0120,Royal Meadow Trading 120 LLC,US,company,Hospitality,verified,medium,163000.00,Export revenue,2025-12-12,no_match,no_match
+CUST-0121,Amber Orchid Trading 121 LLC,AE,company,Food distribution,verified,low,230500.00,Operating revenue,2025-01-13,no_match,no_match
+CUST-0122,Cedar Orchid Trading 122 LLC,GB,company,Technology services,verified,low,226000.00,Trading income,2025-02-14,no_match,no_match
+CUST-0123,Desert Orchid Trading 123 LLC,SG,company,Construction,verified,low,109500.00,Service contracts,2025-03-15,no_match,no_match
+CUST-0124,Harbor Orchid Trading 124 LLC,IN,company,Textiles,verified,low,106000.00,Investment proceeds,2025-04-16,no_match,no_match
+CUST-0125,Jade Orchid Trading 125 LLC,US,company,Logistics,verified,medium,190500.00,Export revenue,2025-05-17,no_match,no_match
+CUST-0126,Meridian Orchid Trading 126 LLC,AE,company,Professional services,verified,low,94000.00,Operating revenue,2025-06-18,no_match,no_match
+CUST-0127,Northstar Orchid Trading 127 LLC,GB,company,Wholesale trade,verified,low,97000.00,Trading income,2025-07-19,no_match,no_match
+CUST-0128,Silver Orchid Trading 128 LLC,SG,company,Hospitality,review_required,low,136000.00,Service contracts,2025-08-20,no_match,no_match
+CUST-0129,Summit Orchid Trading 129 LLC,IN,company,Food distribution,verified,low,241000.00,Investment proceeds,2025-09-21,no_match,no_match
+CUST-0130,Willow Orchid Trading 130 LLC,US,company,Technology services,verified,medium,205000.00,Export revenue,2025-10-22,no_match,no_match
+CUST-0131,Coral Orchid Trading 131 LLC,AE,company,Construction,verified,low,31500.00,Operating revenue,2025-11-23,no_match,no_match
+CUST-0132,Golden Orchid Trading 132 LLC,GB,company,Textiles,verified,low,33500.00,Trading income,2025-12-24,no_match,no_match
+CUST-0133,Olive Orchid Trading 133 LLC,SG,company,Logistics,verified,low,43500.00,Service contracts,2025-01-25,no_match,no_match
+CUST-0134,Sapphire Orchid Trading 134 LLC,IN,company,Professional services,verified,low,38000.00,Investment proceeds,2025-02-26,no_match,no_match
+CUST-0135,Atlas Orchid Trading 135 LLC,US,company,Wholesale trade,verified,medium,222000.00,Export revenue,2025-03-27,no_match,no_match
+CUST-0136,Bright Orchid Trading 136 LLC,AE,company,Hospitality,verified,low,73500.00,Operating revenue,2025-04-01,no_match,no_match
+CUST-0137,Cobalt Orchid Trading 137 LLC,GB,company,Food distribution,verified,low,234000.00,Trading income,2025-05-02,no_match,no_match
+CUST-0138,Evergreen Orchid Trading 138 LLC,SG,company,Technology services,verified,low,234500.00,Service contracts,2025-06-03,no_match,no_match
+CUST-0139,Lunar Orchid Trading 139 LLC,IN,company,Construction,verified,low,114500.00,Investment proceeds,2025-07-04,no_match,no_match
+CUST-0140,Royal Orchid Trading 140 LLC,US,company,Textiles,verified,medium,10000.00,Export revenue,2025-08-05,no_match,no_match
+CUST-0141,Amber Peak Trading 141 LLC,AE,company,Logistics,verified,low,213500.00,Operating revenue,2025-09-06,no_match,no_match
+CUST-0142,Cedar Peak Trading 142 LLC,GB,company,Professional services,verified,low,88500.00,Trading income,2025-10-07,no_match,no_match
+CUST-0143,Desert Peak Trading 143 LLC,SG,company,Wholesale trade,verified,low,33500.00,Service contracts,2025-11-08,no_match,no_match
+CUST-0144,Harbor Peak Trading 144 LLC,IN,company,Hospitality,verified,low,40000.00,Investment proceeds,2025-12-09,no_match,no_match
+CUST-0145,Jade Peak Trading 145 LLC,US,company,Food distribution,verified,medium,212500.00,Export revenue,2025-01-10,no_match,no_match
+CUST-0146,Meridian Peak Trading 146 LLC,AE,company,Technology services,verified,low,136000.00,Operating revenue,2025-02-11,no_match,no_match
+CUST-0147,Northstar Peak Trading 147 LLC,GB,company,Construction,verified,low,114500.00,Trading income,2025-03-12,no_match,no_match
+CUST-0148,Silver Peak Trading 148 LLC,SG,company,Textiles,verified,high,59500.00,Service contracts,2025-04-13,no_match,no_match
+CUST-0149,Summit Peak Trading 149 LLC,IN,company,Logistics,verified,low,61500.00,Investment proceeds,2025-05-14,no_match,no_match
+CUST-0150,Willow Peak Trading 150 LLC,US,company,Professional services,verified,medium,143000.00,Export revenue,2025-06-15,no_match,no_match
+CUST-0151,Coral Peak Trading 151 LLC,AE,company,Wholesale trade,verified,low,39500.00,Operating revenue,2025-07-16,no_match,no_match
+CUST-0152,Golden Peak Trading 152 LLC,GB,company,Hospitality,verified,low,63500.00,Trading income,2025-08-17,no_match,no_match
+CUST-0153,Olive Peak Trading 153 LLC,SG,company,Food distribution,verified,low,231500.00,Service contracts,2025-09-18,no_match,no_match
+CUST-0154,Sapphire Peak Trading 154 LLC,IN,company,Technology services,verified,low,116000.00,Investment proceeds,2025-10-19,no_match,no_match
+CUST-0155,Atlas Peak Trading 155 LLC,US,company,Construction,verified,medium,115500.00,Export revenue,2025-11-20,no_match,no_match
+CUST-0156,Bright Peak Trading 156 LLC,AE,company,Textiles,verified,low,227500.00,Operating revenue,2025-12-21,no_match,no_match
+CUST-0157,Cobalt Peak Trading 157 LLC,GB,company,Logistics,verified,low,187500.00,Trading income,2025-01-22,no_match,no_match
+CUST-0158,Evergreen Peak Trading 158 LLC,SG,company,Professional services,verified,low,126000.00,Service contracts,2025-02-23,no_match,no_match
+CUST-0159,Lunar Peak Trading 159 LLC,IN,company,Wholesale trade,verified,low,171000.00,Investment proceeds,2025-03-24,no_match,no_match
+CUST-0160,Royal Peak Trading 160 LLC,US,company,Hospitality,verified,medium,29500.00,Export revenue,2025-04-25,no_match,no_match
+CUST-0161,Amber River Trading 161 LLC,AE,company,Food distribution,verified,low,138500.00,Operating revenue,2025-05-26,no_match,no_match
+CUST-0162,Cedar River Trading 162 LLC,GB,company,Technology services,verified,low,135000.00,Trading income,2025-06-27,no_match,no_match
+CUST-0163,Desert River Trading 163 LLC,SG,company,Construction,verified,low,135500.00,Service contracts,2025-07-01,no_match,no_match
+CUST-0164,Harbor River Trading 164 LLC,IN,company,Textiles,verified,low,95000.00,Investment proceeds,2025-08-02,no_match,no_match
+CUST-0165,Jade River Trading 165 LLC,US,company,Logistics,review_required,medium,139000.00,Export revenue,2025-09-03,no_match,no_match
+CUST-0166,Meridian River Trading 166 LLC,AE,company,Professional services,verified,low,224500.00,Operating revenue,2025-10-04,no_match,no_match
+CUST-0167,Northstar River Trading 167 LLC,GB,company,Wholesale trade,verified,low,242500.00,Trading income,2025-11-05,no_match,no_match
+CUST-0168,Silver River Trading 168 LLC,SG,company,Hospitality,verified,low,148500.00,Service contracts,2025-12-06,no_match,no_match
+CUST-0169,Summit River Trading 169 LLC,IN,company,Food distribution,verified,low,38500.00,Investment proceeds,2025-01-07,no_match,no_match
+CUST-0170,Willow River Trading 170 LLC,US,company,Technology services,verified,medium,158500.00,Export revenue,2025-02-08,no_match,no_match
+CUST-0171,Coral River Trading 171 LLC,AE,company,Construction,verified,low,235000.00,Operating revenue,2025-03-09,no_match,no_match
+CUST-0172,Golden River Trading 172 LLC,GB,company,Textiles,verified,low,50000.00,Trading income,2025-04-10,no_match,no_match
+CUST-0173,Olive River Trading 173 LLC,SG,company,Logistics,verified,low,102500.00,Service contracts,2025-05-11,no_match,no_match
+CUST-0174,Sapphire River Trading 174 LLC,IN,company,Professional services,verified,low,166000.00,Investment proceeds,2025-06-12,no_match,no_match
+CUST-0175,Atlas River Trading 175 LLC,US,company,Wholesale trade,verified,medium,249500.00,Export revenue,2025-07-13,no_match,no_match
+CUST-0176,Bright River Trading 176 LLC,AE,company,Hospitality,verified,low,173000.00,Operating revenue,2025-08-14,no_match,no_match
+CUST-0177,Cobalt River Trading 177 LLC,GB,company,Food distribution,verified,low,24000.00,Trading income,2025-09-15,no_match,no_match
+CUST-0178,Evergreen River Trading 178 LLC,SG,company,Technology services,verified,low,104500.00,Service contracts,2025-10-16,no_match,no_match
+CUST-0179,Lunar River Trading 179 LLC,IN,company,Construction,verified,low,66500.00,Investment proceeds,2025-11-17,no_match,no_match
+CUST-0180,Royal River Trading 180 LLC,US,company,Textiles,verified,medium,167500.00,Export revenue,2025-12-18,no_match,no_match
+CUST-0181,Amber Stone Trading 181 LLC,AE,company,Logistics,verified,low,241500.00,Operating revenue,2025-01-19,no_match,no_match
+CUST-0182,Cedar Stone Trading 182 LLC,GB,company,Professional services,verified,low,40000.00,Trading income,2025-02-20,no_match,no_match
+CUST-0183,Desert Stone Trading 183 LLC,SG,company,Wholesale trade,verified,low,42500.00,Service contracts,2025-03-21,no_match,no_match
+CUST-0184,Harbor Stone Trading 184 LLC,IN,company,Hospitality,verified,low,95500.00,Investment proceeds,2025-04-22,no_match,no_match
+CUST-0185,Jade Stone Trading 185 LLC,US,company,Food distribution,verified,high,133500.00,Export revenue,2025-05-23,no_match,no_match
+CUST-0186,Meridian Stone Trading 186 LLC,AE,company,Technology services,verified,low,56000.00,Operating revenue,2025-06-24,no_match,no_match
+CUST-0187,Northstar Stone Trading 187 LLC,GB,company,Construction,verified,low,113500.00,Trading income,2025-07-25,no_match,no_match
+CUST-0188,Silver Stone Trading 188 LLC,SG,company,Textiles,verified,low,118500.00,Service contracts,2025-08-26,no_match,no_match
+CUST-0189,Summit Stone Trading 189 LLC,IN,company,Logistics,verified,low,238500.00,Investment proceeds,2025-09-27,no_match,no_match
+CUST-0190,Willow Stone Trading 190 LLC,US,company,Professional services,verified,medium,98000.00,Export revenue,2025-10-01,no_match,no_match
+CUST-0191,Coral Stone Trading 191 LLC,AE,company,Wholesale trade,verified,low,151000.00,Operating revenue,2025-11-02,no_match,no_match
+CUST-0192,Golden Stone Trading 192 LLC,GB,company,Hospitality,verified,low,88500.00,Trading income,2025-12-03,no_match,no_match
+CUST-0193,Olive Stone Trading 193 LLC,SG,company,Food distribution,verified,low,39000.00,Service contracts,2025-01-04,no_match,no_match
+CUST-0194,Sapphire Stone Trading 194 LLC,IN,company,Technology services,verified,low,22500.00,Investment proceeds,2025-02-05,no_match,no_match
+CUST-0195,Atlas Stone Trading 195 LLC,US,company,Construction,verified,medium,175000.00,Export revenue,2025-03-06,no_match,no_match
+CUST-0196,Bright Stone Trading 196 LLC,AE,company,Textiles,verified,low,132000.00,Operating revenue,2025-04-07,no_match,no_match
+CUST-0197,Cobalt Stone Trading 197 LLC,GB,company,Logistics,verified,low,249000.00,Trading income,2025-05-08,no_match,no_match
+CUST-0198,Evergreen Stone Trading 198 LLC,SG,company,Professional services,verified,low,60000.00,Service contracts,2025-06-09,no_match,no_match
+CUST-0199,Lunar Stone Trading 199 LLC,IN,company,Wholesale trade,review_required,low,197500.00,Investment proceeds,2025-07-10,no_match,no_match
+CUST-0200,Royal Stone Trading 200 LLC,US,company,Hospitality,verified,medium,191500.00,Export revenue,2025-08-11,no_match,no_match

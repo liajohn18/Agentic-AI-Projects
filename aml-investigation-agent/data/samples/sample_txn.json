@@ -1,0 +1,10 @@
+{
+  "transaction_id": "TX-1001",
+  "amount": "5000.50",
+  "currency": "USD",
+  "timestamp": "2026-10-22T09:30:00Z",
+  "sender_name": "Northwind Trading",
+  "beneficiary_name": "Cedar Imports",
+  "channel": "wire",
+  "description": "Monthly supplier payment"
+}

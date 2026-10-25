@@ -1,0 +1,22 @@
+# Python environments and cache
+.venv/
+.uv-cache/
+__pycache__/
+*.py[cod]
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local case data and uploaded files
+data/*.db
+data/*.db-*
+data/uploads/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
