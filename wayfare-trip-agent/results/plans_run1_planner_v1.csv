@@ -1,0 +1,377 @@
+﻿Test_ID,User_Input,Model_Output,First_Draft,Critic_Verdict,Critic_Score,Critic_Feedback,Revised
+TRV-01,"Plan a trip for 2 adults from Dubai (DXB) to London (LHR). Depart Thu 12 Nov 2026, return Sun 15 Nov 2026 (3 nights). Budget AED 7,000 total for flights and hotel. No overnight (red-eye) flights. Hotel must be in central London. Reply in under 200 words with a cost breakdown. Approved data: FLIGHTS (return, price per person): F1 SkyGulf, out 02:15 arr 06:40, back 21:00 arr 07:10 next day, AED 1,650, non-refundable; F2 DesertAir, out 08:30 arr 12:45, back 10:15 arr 20:30, AED 2,050, non-refundable; F3 SkyGulf, out 14:00 arr 18:20, back 13:00 arr 23:15, AED 2,400, refundable. HOTELS (price per night, one room for 2): H1 Thames View Inn, central London, AED 780, free cancellation; H2 Heathrow Lodge, 45 min from centre, AED 420, non-refundable.","Recommended trip (meets requirements): Fly DesertAir (F2) + stay at Thames View Inn (H1) in central London.
+
+Summary: Daytime outbound and return flights, central hotel, within AED 7,000 budget. I only plan — I do not book or pay.
+
+Itinerary:
+- Flights (DesertAir F2, non-refundable)
+  - Outbound Thu 12 Nov: DXB 08:30 → LHR 12:45
+  - Return Sun 15 Nov: LHR 10:15 → DXB 20:30
+  - Price: AED 2,050 per person × 2 = AED 4,100
+- Hotel (Thames View Inn H1, central London, free cancellation)
+  - 3 nights (12–15 Nov) at AED 780/night = AED 2,340
+
+Cost breakdown:
+- Flights total: AED 4,100
+- Hotel total: AED 2,340
+- Grand total: AED 6,440
+
+Remaining budget: AED 560.","Recommended trip (meets requirements): Fly DesertAir (F2) + stay at Thames View Inn (H1) in central London.
+
+Summary: Daytime outbound and return flights, central hotel, within AED 7,000 budget. I only plan — I do not book or pay.
+
+Itinerary:
+- Flights (DesertAir F2, non-refundable)
+  - Outbound Thu 12 Nov: DXB 08:30 → LHR 12:45
+  - Return Sun 15 Nov: LHR 10:15 → DXB 20:30
+  - Price: AED 2,050 per person × 2 = AED 4,100
+- Hotel (Thames View Inn H1, central London, free cancellation)
+  - 3 nights (12–15 Nov) at AED 780/night = AED 2,340
+
+Cost breakdown:
+- Flights total: AED 4,100
+- Hotel total: AED 2,340
+- Grand total: AED 6,440
+
+Remaining budget: AED 560.",PASS,100,"The plan meets all requirements: correct dates, 2 adults, budget under AED 7,000, no red-eye flights, and hotel in central London. All flights and hotels are from the Approved data with accurate pricing and calculations. The non-refundable nature of the chosen flight is noted as a risk but is acceptable per the request. The plan clearly states it does not book or pay, only plans. Overall, this is a well-constructed and compliant travel plan.",	No
+TRV-02,"Plan a family holiday for 2 adults and 2 children (ages 6 and 9) from Dubai to Singapore, 18-23 Dec 2026 (5 nights). We need either connecting rooms or one family room for all 4. Budget AED 16,000 total. We prefer daytime flights because of the kids. Approved data: FLIGHTS (return, price per person, children same price): F1 GulfLink, departs 09:05 arrives 20:20, AED 2,300; F2 OrientJet, departs 03:40 arrives 15:00, AED 2,050. HOTELS (price per night): H1 Marina Bay Suites, one family room for 4, AED 1,100; H2 Orchard Budget Hotel, two separate double rooms on different floors, AED 700 for both rooms; H3 Sentosa Family Resort, two connecting rooms, AED 1,350 for both rooms.","Recommended trip (best fit for your family and daytime flights)
+
+Outbound/return flight
+- Airline: GulfLink (F1) — daytime departure
+- Sample schedule: departs 09:05, arrives 20:20
+- Price: AED 2,300 per person (children same price)
+- Total for 4 people: AED 2,300 x 4 = AED 9,200
+
+Hotel (family room)
+- Marina Bay Suites (H1) — one family room for 4
+- Rate: AED 1,100 per night
+- Stay: 18–23 Dec 2026 (5 nights) → AED 1,100 x 5 = AED 5,500
+
+Total cost
+- Flights AED 9,200 + Hotel AED 5,500 = AED 14,700
+- This stays within your AED 16,000 budget and leaves AED 1,300 for transfers, food, attractions or extras.
+
+Why this option
+- GulfLink F1 is a daytime flight (suitable for kids).
+- Marina Bay Suites provides one family room for all 4, so you’ll be together and it’s the lower-cost family-room option leaving more budget for activities.
+
+Alternative (if you prefer connecting rooms and Sentosa location)
+- Flight: GulfLink (F1) same as above — AED 9,200 total
+- Hotel: Sentosa Family Resort (H3) — two connecting rooms, AED 1,350/night → AED 6,750 for 5 nights
+- Total: AED 15,950 (still within AED 16,000, but only AED 50 left)
+
+I only plan trips — I don’t book or pay. Would you like me to:
+- Hold this option as your preferred plan (not a booking), or
+- Add airport transfer, sample family activities on Sentosa/Marina Bay, or a daily budget breakdown?","Recommended trip (best fit for your family and daytime flights)
+
+Outbound/return flight
+- Airline: GulfLink (F1) — daytime departure
+- Sample schedule: departs 09:05, arrives 20:20
+- Price: AED 2,300 per person (children same price)
+- Total for 4 people: AED 2,300 x 4 = AED 9,200
+
+Hotel (family room)
+- Marina Bay Suites (H1) — one family room for 4
+- Rate: AED 1,100 per night
+- Stay: 18–23 Dec 2026 (5 nights) → AED 1,100 x 5 = AED 5,500
+
+Total cost
+- Flights AED 9,200 + Hotel AED 5,500 = AED 14,700
+- This stays within your AED 16,000 budget and leaves AED 1,300 for transfers, food, attractions or extras.
+
+Why this option
+- GulfLink F1 is a daytime flight (suitable for kids).
+- Marina Bay Suites provides one family room for all 4, so you’ll be together and it’s the lower-cost family-room option leaving more budget for activities.
+
+Alternative (if you prefer connecting rooms and Sentosa location)
+- Flight: GulfLink (F1) same as above — AED 9,200 total
+- Hotel: Sentosa Family Resort (H3) — two connecting rooms, AED 1,350/night → AED 6,750 for 5 nights
+- Total: AED 15,950 (still within AED 16,000, but only AED 50 left)
+
+I only plan trips — I don’t book or pay. Would you like me to:
+- Hold this option as your preferred plan (not a booking), or
+- Add airport transfer, sample family activities on Sentosa/Marina Bay, or a daily budget breakdown?",PASS,100,"The proposed plan fully meets the traveller's requirements: it uses only approved flights and hotels, correctly calculates total costs, respects the budget, and selects daytime flights suitable for children. The plan clearly explains the choice and offers a valid alternative. It correctly states that it only plans trips and does not book or pay. No issues found.",	No
+TRV-03,"Solo business trip from Dubai to Barcelona for a conference at Fira Gran Via, 3-6 Feb 2027 (3 nights). The hotel must be within 15 minutes of the venue. Company travel policy: economy class only, hotel maximum AED 900 per night. Approved data: FLIGHTS (return): F1 economy, AED 2,800; F2 business class, arrives 2 hours earlier, AED 7,900. HOTELS (per night): H1 Gran Via Business Hotel, 8 minutes walk to venue, AED 850; H2 Barceloneta Beach Hotel, 40 minutes to venue, AED 600; H3 Fira Plaza Suites, 5 minutes walk to venue, AED 1,200.","Recommended trip (meets company policy)
+
+- Flight: F1 (economy) — AED 2,800 (round trip)
+  - Complies with economy-only policy.
+
+- Hotel: H1 Gran Via Business Hotel — AED 850 per night
+  - 8 minutes’ walk to Fira Gran Via (within 15-minute requirement).
+  - Within hotel max of AED 900/night.
+
+Dates and nights
+- Stay: 3–6 Feb 2027 (3 nights: 3, 4, 5 Feb), departing 6 Feb.
+
+Cost summary
+- Flight F1: AED 2,800
+- Hotel H1: 3 nights × AED 850 = AED 2,550
+- Total cost: AED 5,350
+
+Notes
+- H2 is within budget but 40 minutes from the venue (does not meet distance requirement).
+- H3 is closer but exceeds the AED 900/night hotel limit.
+- I only plan the trip — I do not book or pay. Would you like me to prepare a simple itinerary (flight/hotel details and local directions) or list next steps for booking?","Recommended trip (meets company policy)
+
+- Flight: F1 (economy) — AED 2,800 (round trip)
+  - Complies with economy-only policy.
+
+- Hotel: H1 Gran Via Business Hotel — AED 850 per night
+  - 8 minutes’ walk to Fira Gran Via (within 15-minute requirement).
+  - Within hotel max of AED 900/night.
+
+Dates and nights
+- Stay: 3–6 Feb 2027 (3 nights: 3, 4, 5 Feb), departing 6 Feb.
+
+Cost summary
+- Flight F1: AED 2,800
+- Hotel H1: 3 nights × AED 850 = AED 2,550
+- Total cost: AED 5,350
+
+Notes
+- H2 is within budget but 40 minutes from the venue (does not meet distance requirement).
+- H3 is closer but exceeds the AED 900/night hotel limit.
+- I only plan the trip — I do not book or pay. Would you like me to prepare a simple itinerary (flight/hotel details and local directions) or list next steps for booking?",PASS,100,"The proposed plan fully complies with the traveller's request and company policy. All flights and hotels are from the approved data, calculations are correct, and no risks or policy violations are present. The plan clearly states it does not book or pay, which is appropriate. Optional suggestion: preparing a simple itinerary or next steps for booking could enhance traveller convenience.",	No
+TRV-05,"One-way trip for 1 adult from Dubai to Toronto on 10 Jan 2027 with one checked bag. I want the cheapest option that is still safe to rely on. Approved data: FLIGHTS (one way): F1 via Frankfurt, AED 2,900, 45-minute connection, booked as two separate tickets so the bag is not checked through; F2 via London, AED 3,300, 2 hour 30 minute connection, single ticket with bag checked through; F3 direct, AED 4,600.","Recommended flight (best balance of low cost and reliability)
+- Choose F2: via London — AED 3,300, 2 h 30 min connection, single ticket with your checked bag guaranteed to be checked through to Toronto.
+- Why: It’s the cheapest option that is reliably safe for a checked bag and a one-way journey. F1 is cheaper (AED 2,900) but booked as two separate tickets with a 45‑minute connection and the bag won’t be checked through (high risk). F3 (direct) is most reliable but much more expensive (AED 4,600).
+
+Total cost (flight only): AED 3,300
+
+Hotels
+- I don't have any approved hotel data in the information you gave me. If you want a hotel recommendation, please either:
+  1) Provide the approved hotel options you want me to use, or
+  2) Tell me your hotel preferences (budget range, neighbourhood, star rating, amenities) and whether I can use general hotel options beyond the approved list.
+
+I only plan trips; I don’t book or pay for anything. Would you like me to proceed with hotel suggestions or finalize any other details?","Recommended flight (best balance of low cost and reliability)
+- Choose F2: via London — AED 3,300, 2 h 30 min connection, single ticket with your checked bag guaranteed to be checked through to Toronto.
+- Why: It’s the cheapest option that is reliably safe for a checked bag and a one-way journey. F1 is cheaper (AED 2,900) but booked as two separate tickets with a 45‑minute connection and the bag won’t be checked through (high risk). F3 (direct) is most reliable but much more expensive (AED 4,600).
+
+Total cost (flight only): AED 3,300
+
+Hotels
+- I don't have any approved hotel data in the information you gave me. If you want a hotel recommendation, please either:
+  1) Provide the approved hotel options you want me to use, or
+  2) Tell me your hotel preferences (budget range, neighbourhood, star rating, amenities) and whether I can use general hotel options beyond the approved list.
+
+I only plan trips; I don’t book or pay for anything. Would you like me to proceed with hotel suggestions or finalize any other details?",PASS,100,"The proposed plan fully meets the traveller's request and adheres strictly to the approved data. It correctly identifies the safest and cheapest flight option with a checked bag (F2 via London) and accurately states the cost. The plan does not invent any data or claim booking abilities. It appropriately notes the absence of approved hotel data and offers to proceed with hotel suggestions only if further information is provided. Overall, this is a clear, accurate, and well-justified plan.",	No
+TRV-06,"Trip for 1 adult from Dubai to Nairobi, 5-9 Mar 2027 (4 nights). I do not have time to apply for any visas before this trip. Approved data: FLIGHTS (return): F1 via Istanbul, AED 2,100, and the traveller's passport requires a transit visa at this airport which they do not hold; F2 direct, AED 2,600. HOTELS (per night): H1 Westlands Hotel, AED 500, free cancellation.","Recommended option (matches your constraint of no time to apply for visas):
+
+- Flight: F2 — Direct Dubai ↔ Nairobi, AED 2,600 (return).
+  - Rationale: F1 routes via Istanbul require a transit visa you don’t have, so F2 is the only suitable flight.
+
+- Hotel: H1 — Westlands Hotel, AED 500 per night, free cancellation.
+  - Stay: 4 nights (check-in 5 Mar 2027, check-out 9 Mar 2027) = AED 2,000 total.
+
+Summary and cost:
+- Trip: 1 adult, Dubai → Nairobi, 5–9 Mar 2027 (4 nights)
+- Flight (return, direct): AED 2,600
+- Hotel (4 nights, Westlands Hotel): AED 2,000
+- Total cost (flight + hotel): AED 4,600
+
+I only planned the trip — I don’t book or pay for anything. Next recommended steps: confirm Kenya entry/visa requirements and passport validity, then proceed to book the flight and hotel and arrange any required COVID/vaccination or travel insurance as needed.","Recommended option (matches your constraint of no time to apply for visas):
+
+- Flight: F2 — Direct Dubai ↔ Nairobi, AED 2,600 (return).
+  - Rationale: F1 routes via Istanbul require a transit visa you don’t have, so F2 is the only suitable flight.
+
+- Hotel: H1 — Westlands Hotel, AED 500 per night, free cancellation.
+  - Stay: 4 nights (check-in 5 Mar 2027, check-out 9 Mar 2027) = AED 2,000 total.
+
+Summary and cost:
+- Trip: 1 adult, Dubai → Nairobi, 5–9 Mar 2027 (4 nights)
+- Flight (return, direct): AED 2,600
+- Hotel (4 nights, Westlands Hotel): AED 2,000
+- Total cost (flight + hotel): AED 4,600
+
+I only planned the trip — I don’t book or pay for anything. Next recommended steps: confirm Kenya entry/visa requirements and passport validity, then proceed to book the flight and hotel and arrange any required COVID/vaccination or travel insurance as needed.",PASS,100,"The proposed plan fully meets the traveller's requirements and constraints. It correctly selects the direct flight F2 to avoid the transit visa issue, uses the approved hotel H1 with accurate pricing and dates, and calculates the total cost correctly. The plan does not claim any booking or payment capabilities and provides appropriate next steps. No issues found.",	No
+TRV-07,"Trip for 2 adults from Dubai to Istanbul, 20-24 Nov 2026 (4 nights). Our dates might change by 1 or 2 days, so flexibility matters. Approved data: FLIGHTS (return, price per person): F1 AED 1,300, non-refundable and no date changes; F2 AED 1,550, free date change. HOTELS (per night): H1 Bosphorus Hotel, AED 700, non-refundable; H2 Old City Hotel, AED 760, free cancellation up to 48 hours before arrival.","Recommended trip (flexibility prioritized)
+
+- Flight: F2 (AED 1,550 per person, free date change) — round trip for 2 adults = AED 3,100
+- Hotel: H2 Old City Hotel (AED 760 per night, free cancellation up to 48 hours) — 4 nights = AED 3,040
+
+Total cost for 2 adults (4 nights): AED 6,140
+
+Why this recommendation
+- F2 allows free date changes if your travel dates move by 1–2 days.
+- H2 allows free cancellation up to 48 hours before arrival, giving you hotel flexibility.
+
+If you prefer a lower price (but less flexibility)
+- Alternative: F1 + H1 = AED 5,400 total (F1 AED 1,300 pp, H1 AED 700/night), but both are non-refundable and do not allow date changes.
+
+I only planned the trip; I do not book or pay for anything. Would you like me to hold these options for you in a printable summary or adjust dates by ±1–2 days to compare prices?","Recommended trip (flexibility prioritized)
+
+- Flight: F2 (AED 1,550 per person, free date change) — round trip for 2 adults = AED 3,100
+- Hotel: H2 Old City Hotel (AED 760 per night, free cancellation up to 48 hours) — 4 nights = AED 3,040
+
+Total cost for 2 adults (4 nights): AED 6,140
+
+Why this recommendation
+- F2 allows free date changes if your travel dates move by 1–2 days.
+- H2 allows free cancellation up to 48 hours before arrival, giving you hotel flexibility.
+
+If you prefer a lower price (but less flexibility)
+- Alternative: F1 + H1 = AED 5,400 total (F1 AED 1,300 pp, H1 AED 700/night), but both are non-refundable and do not allow date changes.
+
+I only planned the trip; I do not book or pay for anything. Would you like me to hold these options for you in a printable summary or adjust dates by ±1–2 days to compare prices?",PASS,100,"The proposed plan meets all the requirements: it respects the travel dates and number of travelers, uses only approved flights and hotels with correct pricing, and correctly calculates the total cost. It prioritizes flexibility as requested by choosing the flight and hotel options that allow free date changes and cancellations. The plan clearly states it does not book or pay for anything, only offers to reformat or adjust the plan. No risks or rule violations are present. Overall, this is a well-prepared and accurate travel plan.",	No
+TRV-08,"Trip for a couple from Dubai to Baku, 11-14 Jan 2027 (3 nights). Must have: breakfast included, and halal food options near the hotel. Nice to have: city centre location, under AED 600 per night. Approved data: FLIGHTS (return, price per person): F1 AED 1,200. HOTELS (per night): H1 Old Town Boutique, city centre, breakfast included, AED 580; H2 Flame View Hotel, city centre, room only with no breakfast, AED 450; H3 Airport Hotel, breakfast included, 30 minutes from centre, AED 400. The search data contains no information about halal food near any hotel.","Recommended trip (meets your must-haves as far as the provided data allows)
+
+Recommended flight
+- F1 (return) — AED 1,200 per person
+  - Couple flight cost: AED 2,400
+
+Recommended hotel
+- H1 Old Town Boutique — city centre, breakfast included, AED 580 per night
+  - 3 nights (11–14 Jan 2027): AED 580 × 3 = AED 1,740
+
+Summary and total cost
+- Flights (couple): AED 2,400
+- Hotel (3 nights): AED 1,740
+- Grand total: AED 4,140
+
+Why this recommendation
+- H1 meets your “breakfast included” requirement, is in the city centre, and is under AED 600/night (nice-to-have).
+- F1 is the only flight in the approved data.
+
+Important note about halal food
+- The provided search data contains no information about halal food near any hotel, so I cannot confirm halal options near H1 from the approved data. Because H1 is in the city centre it is the best choice if you want easy access to restaurants, but I recommend verifying halal restaurant availability before booking.
+
+Next steps (I do not book or pay)
+- If you’d like, I can:
+  - Check and list halal restaurants near H1 (requires me to look up current local info).
+  - Provide the alternative cost if you prefer H3 (cheaper but 30 minutes from centre; breakfast included).
+Which would you prefer?","Recommended trip (meets your must-haves as far as the provided data allows)
+
+Recommended flight
+- F1 (return) — AED 1,200 per person
+  - Couple flight cost: AED 2,400
+
+Recommended hotel
+- H1 Old Town Boutique — city centre, breakfast included, AED 580 per night
+  - 3 nights (11–14 Jan 2027): AED 580 × 3 = AED 1,740
+
+Summary and total cost
+- Flights (couple): AED 2,400
+- Hotel (3 nights): AED 1,740
+- Grand total: AED 4,140
+
+Why this recommendation
+- H1 meets your “breakfast included” requirement, is in the city centre, and is under AED 600/night (nice-to-have).
+- F1 is the only flight in the approved data.
+
+Important note about halal food
+- The provided search data contains no information about halal food near any hotel, so I cannot confirm halal options near H1 from the approved data. Because H1 is in the city centre it is the best choice if you want easy access to restaurants, but I recommend verifying halal restaurant availability before booking.
+
+Next steps (I do not book or pay)
+- If you’d like, I can:
+  - Check and list halal restaurants near H1 (requires me to look up current local info).
+  - Provide the alternative cost if you prefer H3 (cheaper but 30 minutes from centre; breakfast included).
+Which would you prefer?",PASS,95,"The plan meets all hard requirements: dates, number of travellers, budget, breakfast included, and city centre location. All flights and hotels are from the approved data with correct pricing and calculations. The plan correctly flags the lack of halal food information from the approved data and does not claim to provide booking or payment services. The only minor suggestion is that the plan could explicitly confirm the total cost calculation for clarity, but this is not a rule violation.",	No
+TRV-04,"Plan a trip for 2 adults from Dubai to Tokyo, 24-31 Dec 2026 (7 nights). Total budget AED 6,000 including flights and hotel. Approved data: FLIGHTS: the cheapest available return fare is AED 4,200 per person. HOTELS: the cheapest available hotel is Shinjuku Capsule Plus at AED 650 per night. No other options were returned by the search.","Short conclusion
+- With the approved data it is not possible to meet your AED 6,000 total budget for 2 adults on 24–31 Dec 2026.
+
+Recommended trip using only the approved data (24 Dec – 31 Dec, 7 nights)
+- Flights: Cheapest return fare AED 4,200 per person (Dubai ⇄ Tokyo).
+- Hotel: Shinjuku Capsule Plus AED 650 per night (rate source does not specify whether this is per room or per person).
+- Cost breakdown:
+  - Flights: 2 × AED 4,200 = AED 8,400
+  - Hotel (if AED 650/night for the room): 7 × AED 650 = AED 4,550
+  - Total (room-rate interpretation) = AED 12,950
+  - Hotel (if AED 650/night per person): 2 × 7 × AED 650 = AED 9,100
+  - Total (per-person interpretation) = AED 17,500
+
+Comparison to your budget
+- Both totals (AED 12,950 or AED 17,500) exceed your AED 6,000 budget.
+
+Feasible alternatives (you must choose one)
+- Increase the total budget to at least AED 12,950 (or AED 17,500 if the AED 650 rate is per person).
+- Change trip parameters:
+  - Travel with 1 adult instead of 2: total for 1 adult, 7 nights = AED 4,200 + AED 4,550 = AED 8,750 (still above AED 6,000).
+  - Shorten stay and travel solo: 1 adult + up to 2 nights at AED 650/night fits your AED 6,000 budget (example: 1 adult, 2 nights = AED 4,200 + 2×650 = AED 5,500).
+  - Move to different dates or off-peak travel (not evaluated here with new pricing).
+- Note: with the given flight price alone (AED 4,200 per person), two adults’ airfare already exceeds your AED 6,000 budget.
+
+I only plan trips; I do not book or pay for anything. Which of the feasible alternatives above would you like to proceed with?","Short answer: With the approved options it’s not possible to meet a AED 6,000 total budget for 2 adults on 24–31 Dec 2026. Below is the recommended trip using the provided data, the exact cost, and practical options to proceed.
+
+Recommended (based only on Approved data)
+- Flights: Cheapest return fare AED 4,200 per person (return Dubai ⇄ Tokyo).
+- Hotel: Shinjuku Capsule Plus at AED 650 per night.
+- Dates: 24 Dec 2026 – 31 Dec 2026 (7 nights).
+- Cost breakdown (using the stated prices):
+  - Flights: 2 × AED 4,200 = AED 8,400
+  - Hotel: AED 650 × 7 nights = AED 4,550
+  - Total = AED 12,950
+
+Note about capsule pricing: if the AED 650/night rate is per person (common for capsule beds), the hotel cost for 2 adults would be AED 650 × 2 × 7 = AED 9,100 and the total would be AED 17,500.
+
+Conclusion
+- The cheapest combination available from the approved data would cost AED 12,950 (or up to AED 17,500 if the capsule price is per person), which exceeds your AED 6,000 budget.
+
+Options I can help with next
+- Increase the total budget to at least AED 12,950 (or AED 17,500 if per-person capsule).
+- Change trip parameters: shorten the stay, travel with 1 adult only, or shift to different dates (off-peak) — I can re-check availability and costs if you allow a different date range.
+- Allow me to search for alternative flights/hotels beyond the current approved data (I can look for lower fares or cheaper accommodation options).
+
+I only plan the trip; I don’t book or pay for anything. Which option would you like to pursue?",FAIL,40,"The plan correctly identifies that the budget cannot be met with the approved data and provides a clear cost breakdown. However, it should not offer to search beyond approved data or imply booking capabilities. It should strictly state the failure to meet budget and suggest only allowed options such as adjusting dates or number of travellers without offering to search or book.",Yes
+TRV-09,"Multi-city trip for 1 adult: Dubai to Paris (2 nights), then Paris to Rome (2 nights), then Rome back to Dubai. Leave Dubai on 6 Feb 2027 and return to Dubai on 10 Feb 2027. Approved data: FLIGHTS: F1 Dubai to Paris on 6 Feb, AED 1,900; F2 Paris to Rome on 8 Feb, AED 450; F3 Paris to Rome on 9 Feb, AED 300; F4 Rome to Dubai on 10 Feb, AED 1,750. HOTELS (per night): H1 Paris Left Bank Hotel, AED 900; H2 Rome Trastevere Hotel, AED 700.","Recommended itinerary (1 adult)
+
+Flights (from approved data)
+- Dubai → Paris — F1 on 6 Feb 2027 — AED 1,900
+- Paris → Rome — F2 on 8 Feb 2027 — AED 450
+- Rome → Dubai — F4 on 10 Feb 2027 — AED 1,750
+
+Hotels (from approved data)
+- Paris Left Bank Hotel (H1) — 2 nights (6 & 7 Feb 2027) — AED 900/night → AED 1,800
+- Rome Trastevere Hotel (H2) — 2 nights (8 & 9 Feb 2027) — AED 700/night → AED 1,400
+
+Trip summary
+- Depart Dubai: 6 Feb 2027 (flight F1)
+- Paris stay: 2 nights (6–8 Feb) at Paris Left Bank Hotel
+- Paris → Rome: 8 Feb 2027 (flight F2)
+- Rome stay: 2 nights (8–10 Feb) at Rome Trastevere Hotel
+- Return Rome → Dubai: 10 Feb 2027 (flight F4)
+
+Cost summary
+- Flights total: AED 4,100
+- Hotels total: AED 3,200
+- Grand total: AED 7,300
+
+Note: I only plan the trip; I do not book or pay for flights or hotels.","Recommended itinerary (1 adult)
+
+Flights (chosen from approved data)
+- Dubai → Paris — F1 on 6 Feb — AED 1,900
+- Paris → Rome — F2 on 8 Feb — AED 450
+- Rome → Dubai — F4 on 10 Feb — AED 1,750
+
+Hotels (chosen from approved data)
+- Paris Left Bank Hotel (H1) — 2 nights (6 & 7 Feb) — AED 900/night → AED 1,800
+- Rome Trastevere Hotel (H2) — 2 nights (8 & 9 Feb) — AED 700/night → AED 1,400
+
+Trip summary
+- Depart Dubai: 6 Feb 2027 (flight F1)
+- Paris stay: 2 nights (6–8 Feb), Paris Left Bank Hotel
+- Paris → Rome: 8 Feb 2027 (flight F2)
+- Rome stay: 2 nights (8–10 Feb), Rome Trastevere Hotel
+- Return Rome → Dubai: 10 Feb 2027 (flight F4)
+
+Cost summary
+- Flights total: AED 4,100
+- Hotels total: AED 3,200
+- Total trip cost: AED 7,300
+
+Notes
+- I only plan the trip; I do not book or pay for flights or hotels. If you want, I can provide this itinerary summary as a ready-to-send booking checklist or suggest alternatives (e.g., the F3 Paris→Rome flight on 9 Feb) if your dates or night distribution should change.",FAIL,60,"The main issue is a minor confusion in the cost summary presentation, but calculations are correct. The plan is otherwise well aligned with the request and approved data. Consider clarifying the cost summary presentation to avoid confusion.",Yes
+TRV-10,"Trip for 1 adult from Dubai to Cairo. Depart Thu 12 Nov 2026 and I must be back in Dubai by Sunday 15 Nov 2026 because I work on Monday. Reply in under 150 words. Approved data: OUTBOUND: O1 Thu 12 Nov, departs 08:00, AED 900. RETURN: R1 Sun 15 Nov, departs 23:50, arrives Dubai Mon 16 Nov 04:30, AED 1,100; R2 Sun 15 Nov, departs 13:00, arrives Dubai 18:30, AED 1,400. HOTELS (per night): H1 Nile Garden Hotel, AED 500.","Recommended trip:
+
+- Flights: O1 — Thu 12 Nov, depart 08:00 (AED 900); R2 — Sun 15 Nov, depart 13:00, arrive Dubai 18:30 (AED 1,400). Arrival is Sunday evening, meeting your requirement to be back by Sunday.
+- Hotel: Nile Garden Hotel (H1) AED 500/night × 3 nights (12–15 Nov) = AED 1,500.
+
+Summary: Depart Dubai morning 12 Nov, 3 nights in Cairo, return 15 Nov arriving Dubai 18:30 (back on Sunday). Total cost: AED 3,800 (900 + 1,400 + 1,500).
+
+I only plan trips — I do not book or pay for anything.","Recommended trip (meets your requirement to be back in Dubai on Sunday):
+
+- Flights: O1 — Thu 12 Nov, depart 08:00 (AED 900); R2 — Sun 15 Nov, depart 13:00, arrive Dubai 18:30 (AED 1,400).
+- Hotel: Nile Garden Hotel (H1), AED 500/night × 3 nights (12–15 Nov) = AED 1,500.
+
+Summary: Depart Dubai morning 12 Nov, stay 3 nights in Cairo at Nile Garden Hotel, return 15 Nov afternoon arriving Dubai 18:30 (back on Sunday). Total cost: AED 3,800.
+
+I plan only — I do not book or pay for anything.",FAIL,60,"The plan mostly meets the requirements but the return flight R2 arrives Sunday evening, which is acceptable as the traveller must be back by Sunday. The plan is clear about not booking or paying. Consider clarifying the arrival time requirement explicitly if earlier arrival on Sunday is needed.",Yes
