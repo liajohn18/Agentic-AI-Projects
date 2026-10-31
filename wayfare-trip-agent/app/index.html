@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wayfare · Plan your trip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#14213d; --muted:#6b7280; --line:#e7e2d8;
+  --brand:#0e5e6f; --brand-ink:#ffffff; --accent:#f2994a; --soft:#eef5f6;
+  --ok:#1d7a4f; --ok-bg:#e4f4ec; --warn:#9a5b00; --warn-bg:#fff2dc; --bad:#b42318; --bad-bg:#fde8e6;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif}
+a{color:inherit}
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 32px;max-width:1200px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font:700 22px Fraunces,serif;letter-spacing:-.3px}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--brand);display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px}
+.navlinks{display:flex;gap:22px;align-items:center;color:var(--muted);font-size:14px}
+.gear{border:0;background:none;cursor:pointer;font-size:18px;color:var(--muted);padding:6px;border-radius:8px}
+.gear:hover{background:#ece7dc}
+/* hero search */
+.hero{max-width:1200px;margin:0 auto;padding:8px 32px 0}
+.hero h1{font:700 40px/1.1 Fraunces,serif;margin:10px 0 6px;letter-spacing:-.6px}
+.hero p.lead{color:var(--muted);margin:0 0 20px}
+.search{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 10px 30px rgba(20,33,61,.06)}
+.grid{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr .8fr 1fr;gap:10px}
+.field{border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#fff;min-width:0}
+.field:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px rgba(14,94,111,.12)}
+.field span{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.field input,.field select{width:100%;border:0;outline:0;font:600 15px Inter;color:var(--ink);background:transparent;padding:2px 0;min-width:0}
+.prefs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.prefs b{font-size:13px;color:var(--muted);font-weight:600;margin-right:4px}
+.pill{border:1px solid var(--line);background:#faf8f3;border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;user-select:none}
+.pill.on{background:var(--soft);border-color:var(--brand);color:var(--brand);font-weight:600}
+.pill.on::before{content:"✓ "}
+.bottom{display:flex;gap:10px;margin-top:12px;align-items:stretch}
+.bottom .field{flex:1}
+.cta{background:var(--accent);color:#1b1206;border:0;border-radius:14px;padding:0 28px;font:700 16px Inter;cursor:pointer;min-height:52px}
+.cta:hover{filter:brightness(.97)}
+.cta:disabled{opacity:.6;cursor:wait}
+/* results */
+.wrap{max-width:1200px;margin:0 auto;padding:26px 32px 50px}
+.empty{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.dest{border-radius:var(--radius);min-height:150px;padding:16px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;position:relative;overflow:hidden}
+.dest b{font:700 22px Fraunces,serif}
+.dest small{opacity:.85}
+.results{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
+.banner{border-radius:var(--radius);padding:26px;color:#fff;margin-bottom:16px}
+.banner .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;opacity:.85}
+.banner h2{font:700 32px/1.15 Fraunces,serif;margin:4px 0 6px}
+.banner p{margin:0;opacity:.92;max-width:640px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.card h3{margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:8px}
+.title{font:700 20px Fraunces,serif;margin:0 0 2px}
+.sub{color:var(--muted);font-size:14px}
+.legs{display:grid;gap:10px;margin:14px 0}
+.leg{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center;background:#faf8f3;border-radius:12px;padding:12px 14px}
+.leg .lbl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase}
+.leg .time{font-weight:700;font-size:16px}
+.leg .when{color:var(--muted);font-size:14px;text-align:right}
+.rowline{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.price{font-weight:700;font-size:18px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;font-weight:600;border-radius:999px;padding:4px 10px;background:#f1eee7}
+.t-ok{background:var(--ok-bg);color:var(--ok)} .t-warn{background:var(--warn-bg);color:var(--warn)}
+.note{display:flex;gap:10px;background:var(--warn-bg);color:#5a3a00;border-radius:12px;padding:12px 14px;margin-top:8px;font-size:14px}
+.alt{border:1px dashed var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;display:flex;justify-content:space-between;gap:12px}
+.alt .t{font-weight:600}
+.side{position:sticky;top:16px}
+.total{font:700 34px Fraunces,serif;margin:2px 0}
+.bar{height:8px;border-radius:8px;background:#efebe2;overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%}
+.line{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f1ede5;font-size:14px}
+.line:last-child{border:0}
+.btn{width:100%;border-radius:12px;padding:12px;font:600 15px Inter;cursor:pointer;margin-top:10px}
+.btn.dark{background:var(--ink);color:#fff;border:0}
+.btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.ask{background:var(--soft);border-radius:12px;padding:14px;margin-top:12px;font-size:14px}
+.alert{border-radius:var(--radius);padding:16px 18px;margin-bottom:16px;font-size:15px}
+.a-bad{background:var(--bad-bg);color:var(--bad)} .a-warn{background:var(--warn-bg);color:var(--warn)}
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:320px}
+.spinner{width:42px;height:42px;border-radius:50%;border:4px solid #e6e0d4;border-top-color:var(--brand);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loadmsg{font:600 17px Inter}
+.loadsub{color:var(--muted);font-size:14px}
+.plain p{margin:6px 0} .plain ul{margin:4px 0 8px;padding-left:20px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:0 16px 30px}
+/* settings modal */
+.modal{position:fixed;inset:0;background:rgba(20,33,61,.35);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal.show{display:flex}
+.modal .box{background:#fff;border-radius:16px;padding:20px;width:min(480px,100%)}
+.modal input{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font:14px Inter;margin:8px 0 12px}
+.modal .acts{display:flex;gap:8px;justify-content:flex-end}
+.modal button{border-radius:10px;padding:9px 14px;font:600 14px Inter;cursor:pointer;border:1px solid var(--line);background:#fff}
+.modal button.go{background:var(--ink);color:#fff;border:0}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}.grid .field:first-child{grid-column:1/-1}.results{grid-template-columns:1fr}.side{position:static}.empty{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){nav,.hero,.wrap{padding-left:16px;padding-right:16px}.hero h1{font-size:30px}.navlinks .hide{display:none}.bottom{flex-direction:column}.cta{min-height:50px}.leg{grid-template-columns:1fr auto}.leg .lbl{grid-column:1/-1}.banner h2{font-size:26px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><i>✈</i>Wayfare</div>
+  <div class="navlinks"><span class="hide">Trips</span><span class="hide">Help</span><button class="gear" id="gear" title="Settings">⚙</button></div>
+</nav>
+
+<section class="hero">
+  <h1>Where are you off to?</h1>
+  <p class="lead">Tell us your dates, budget and what matters to you. We'll put the whole trip together.</p>
+  <div class="search">
+    <div class="grid">
+      <label class="field"><span>Flying from Dubai to</span><select id="dest"></select></label>
+      <label class="field"><span>Depart</span><input type="date" id="dep"></label>
+      <label class="field"><span>Return</span><input type="date" id="ret"></label>
+      <label class="field"><span>Adults</span><input type="number" id="adults" min="1" max="9" value="2"></label>
+      <label class="field"><span>Children</span><input type="number" id="kids" min="0" max="9" value="0"></label>
+      <label class="field"><span>Budget (AED)</span><input type="number" id="budget" min="0" step="100" value="7000"></label>
+    </div>
+    <div class="prefs" id="prefs"><b>Must have</b></div>
+    <div class="bottom">
+      <label class="field"><span>Anything else we should know?</span><input id="notes" placeholder="e.g. hotel close to the conference venue"></label>
+      <button class="cta" id="go">Plan my trip</button>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="out"></section>
+<footer>Wayfare concept prototype · sample fares and hotels for demonstration</footer>
+
+<div class="modal" id="modal"><div class="box">
+  <b>Connection</b>
+  <div class="sub">Paste the address of your trip-planning service.</div>
+  <input id="hook" placeholder="https://…/webhook/trip-plan">
+  <div class="acts"><button id="cancel">Cancel</button><button class="go" id="saveHook">Save</button></div>
+</div></div>
+
+<script>
+/* ---------- Sample inventory (sent to the agent behind the scenes) ---------- */
+const CITIES = {
+  "London":    {tint:"linear-gradient(135deg,#1f3b73,#4f6fb0)", blurb:"Museums, markets and West End nights", data:"FLIGHTS (return, price per person): F1 SkyGulf, out 02:15 arr 06:40, back 21:00 arr 07:10 next day, AED 1,650, non-refundable; F2 DesertAir, out 08:30 arr 12:45, back 10:15 arr 20:30, AED 2,050, non-refundable; F3 SkyGulf, out 14:00 arr 18:20, back 13:00 arr 23:15, AED 2,400, refundable. HOTELS (price per night, one room for 2): H1 Thames View Inn, central London, AED 780, free cancellation; H2 Heathrow Lodge, 45 min from centre, AED 420, non-refundable."},
+  "Singapore": {tint:"linear-gradient(135deg,#0b6e4f,#38a3a5)", blurb:"Gardens, hawker food and family fun", data:"FLIGHTS (return, price per person, children same price): F1 GulfLink, departs 09:05 arrives 20:20, AED 2,300; F2 OrientJet, departs 03:40 arrives 15:00, AED 2,050. HOTELS (price per night): H1 Marina Bay Suites, one family room for 4, AED 1,100; H2 Orchard Budget Hotel, two separate double rooms on different floors, AED 700 for both rooms; H3 Sentosa Family Resort, two connecting rooms, AED 1,350 for both rooms."},
+  "Istanbul":  {tint:"linear-gradient(135deg,#7a1f3d,#c0576b)", blurb:"Bazaars, Bosphorus views and history", data:"FLIGHTS (return, price per person): F1 AED 1,300, non-refundable and no date changes; F2 AED 1,550, free date change. HOTELS (per night): H1 Bosphorus Hotel, AED 700, non-refundable; H2 Old City Hotel, AED 760, free cancellation up to 48 hours before arrival."},
+  "Baku":      {tint:"linear-gradient(135deg,#5b3a8c,#9a72c9)", blurb:"Old Town lanes and the Caspian coast", data:"FLIGHTS (return, price per person): F1 AED 1,200. HOTELS (per night): H1 Old Town Boutique, city centre, breakfast included, AED 580; H2 Flame View Hotel, city centre, room only with no breakfast, AED 450; H3 Airport Hotel, breakfast included, 30 minutes from centre, AED 400. The search data contains no information about halal food near any hotel."},
+  "Barcelona": {tint:"linear-gradient(135deg,#b4532a,#e8a24a)", blurb:"Gaudí, tapas and the Mediterranean", data:"FLIGHTS (return, price per person): F1 economy, AED 2,800; F2 business class, arrives 2 hours earlier, AED 7,900. HOTELS (per night): H1 Gran Via Business Hotel, 8 minutes walk to Fira Gran Via conference centre, AED 850; H2 Barceloneta Beach Hotel, 40 minutes to Fira Gran Via, AED 600; H3 Fira Plaza Suites, 5 minutes walk to Fira Gran Via, AED 1,200."},
+  "Cairo":     {tint:"linear-gradient(135deg,#8a6d1f,#d4a83c)", blurb:"Pyramids, the Nile and Khan el-Khalili", data:"FLIGHTS (price per person): OUTBOUND O1 departs 08:00, AED 900. RETURN R1 departs 23:50 and arrives Dubai 04:30 the next day, AED 1,100; RETURN R2 departs 13:00, arrives Dubai 18:30 the same day, AED 1,400. HOTELS (per night): H1 Nile Garden Hotel, AED 500."},
+  "Nairobi":   {tint:"linear-gradient(135deg,#2f5d2a,#7aa25c)", blurb:"Safari gateway and city parks", data:"FLIGHTS (return, price per person): F1 via Istanbul, AED 2,100, and the traveller's passport requires a transit visa at this airport which they do not hold; F2 direct, AED 2,600. HOTELS (per night): H1 Westlands Hotel, AED 500, free cancellation."},
+  "Tokyo":     {tint:"linear-gradient(135deg,#9b1d3a,#e05d74)", blurb:"Neon nights and quiet temples", data:"FLIGHTS: the cheapest available return fare is AED 4,200 per person. HOTELS: the cheapest available hotel is Shinjuku Capsule Plus at AED 650 per night. No other options were returned by the search."}
+};
+const PREFS = ["Daytime flights","Central location","Breakfast included","Free cancellation","Family room","Halal food nearby","No transit visa"];
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const aed=n=>'AED '+Math.round(+n).toLocaleString('en-US');
+
+Object.keys(CITIES).forEach(c=>$('dest').add(new Option(c,c)));
+const picked=new Set();
+PREFS.forEach(p=>{const s=document.createElement('span');s.className='pill';s.textContent=p;s.onclick=()=>{picked.has(p)?picked.delete(p):picked.add(p);s.classList.toggle('on')};$('prefs').appendChild(s)});
+const iso=d=>d.toISOString().slice(0,10);
+const t0=new Date(Date.now()+21*864e5);$('dep').value=iso(t0);$('ret').value=iso(new Date(t0.getTime()+3*864e5));
+const pretty=s=>new Date(s+'T00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+const nights=()=>Math.round((new Date($('ret').value)-new Date($('dep').value))/864e5);
+
+/* settings */
+let HOOK=''; try{HOOK=localStorage.getItem('wayfareHook')||''}catch(e){}
+$('gear').onclick=()=>{$('hook').value=HOOK;$('modal').classList.add('show')};
+$('cancel').onclick=()=>$('modal').classList.remove('show');
+$('saveHook').onclick=()=>{HOOK=$('hook').value.trim();try{localStorage.setItem('wayfareHook',HOOK)}catch(e){}$('modal').classList.remove('show')};
+
+/* landing tiles */
+function landing(){
+  $('out').innerHTML=`<h3 style="font:700 22px Fraunces,serif;margin:0 0 14px">Popular from Dubai</h3><div class="empty">${
+    Object.entries(CITIES).map(([c,v])=>`<div class="dest" style="background:${v.tint}" data-c="${c}"><b>${c}</b><small>${v.blurb}</small></div>`).join('')}</div>`;
+  document.querySelectorAll('.dest').forEach(el=>el.onclick=()=>{$('dest').value=el.dataset.c;window.scrollTo({top:0,behavior:'smooth'})});
+}
+landing();
+
+function buildRequest(){
+  const a=+$('adults').value||1,k=+$('kids').value||0,n=nights();
+  let t=`Plan a trip for ${a} adult${a>1?'s':''}${k?` and ${k} child${k>1?'ren':''}`:''} from Dubai to ${$('dest').value}. Depart ${pretty($('dep').value)}, return ${pretty($('ret').value)} (${n} night${n===1?'':'s'}). Budget AED ${(+$('budget').value).toLocaleString('en-US')} total for flights and hotel.`;
+  if(picked.size) t+=` Must have: ${[...picked].join(', ')}.`;
+  if($('notes').value.trim()) t+=` ${$('notes').value.trim()}.`;
+  return t+` Approved data: ${CITIES[$('dest').value].data}`;
+}
+
+function showLoading(){
+  const msgs=['Finding the best flights…','Comparing hotels…','Checking it fits your budget…','Putting your trip together…'];
+  let i=0;$('out').innerHTML=`<div class="loading"><div class="spinner"></div><div class="loadmsg" id="lm">${msgs[0]}</div><div class="loadsub">This usually takes under a minute.</div></div>`;
+  return setInterval(()=>{i=Math.min(i+1,msgs.length-1);const e=$('lm');if(e)e.textContent=msgs[i]},7000);
+}
+
+$('go').onclick=async()=>{
+  if(!HOOK){$('modal').classList.add('show');return}
+  if(nights()<1){$('out').innerHTML='<div class="alert a-bad">Your return date needs to be after your departure date.</div>';return}
+  $('go').disabled=true;const tm=showLoading();
+  try{
+    const r=await fetch(HOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({User_Input:buildRequest()})});
+    if(!r.ok) throw new Error(r.status);
+    let d=await r.json(); if(Array.isArray(d)) d=d[0];
+    let trip=d.output||d.trip||null;
+    if(typeof trip==='string'){try{trip=JSON.parse(trip)}catch(e){trip=null}}
+    trip&&trip.flight ? render(trip) : renderPlain(String(d.Model_Output||d.output||''));
+  }catch(e){
+    $('out').innerHTML='<div class="alert a-bad"><b>Sorry, we couldn’t plan this trip right now.</b><br>Please try again in a moment.</div>';
+    console.error('Trip request failed:',e);
+  }finally{clearInterval(tm);$('go').disabled=false}
+};
+
+const tagHtml=arr=>(arr||[]).filter(Boolean).map(t=>{const l=t.toLowerCase();const c=/non|no |not|risk|visa/.test(l)?'t-warn':/free|refund|flexib|included|direct/.test(l)?'t-ok':'';return `<span class="tag ${c}">${esc(t)}</span>`}).join('');
+
+function render(t){
+  const city=$('dest').value, v=CITIES[city], budget=+t.budget||+$('budget').value, total=+t.total||0;
+  const over=total>budget, pct=budget?Math.min(100,Math.round(total/budget*100)):0;
+  const status=String(t.status||'ok');
+  const f=t.flight||{}, h=t.hotel||{};
+  const a=+$('adults').value,k=+$('kids').value;
+  $('out').innerHTML=`
+  ${status==='not_possible'?`<div class="alert a-bad"><b>We couldn’t fit this trip into your budget.</b> Here’s the closest we could get, plus some ideas below.</div>`:''}
+  ${status==='over_budget'?`<div class="alert a-warn"><b>Heads up:</b> this plan is over your budget. See the options below.</div>`:''}
+  <div class="results"><div>
+    <div class="banner" style="background:${v.tint}">
+      <div class="eyebrow">${pretty($('dep').value)} – ${pretty($('ret').value)} · ${a+k} traveller${a+k>1?'s':''}</div>
+      <h2>${esc(t.headline||('Your trip to '+city))}</h2>
+      <p>${esc(t.summary||'')}</p>
+    </div>
+    ${f.airline||(f.legs||[]).length?`<div class="card"><h3>✈ Flights</h3>
+      <div class="title">${esc(f.airline||'Your flights')}</div>
+      <div class="legs">${(f.legs||[]).map(l=>`<div class="leg"><span class="lbl">${esc(l.label)}</span><span class="time">${esc(l.time||'')}</span><span class="when">${esc(l.when||'')}</span></div>`).join('')}</div>
+      <div class="rowline"><div class="tags">${tagHtml(f.tags)}</div><div><span class="sub">${esc(f.price_note||'')}</span> <span class="price">${f.total?aed(f.total):''}</span></div></div>
+    </div>`:''}
+    ${h.name?`<div class="card"><h3>🏨 Stay</h3>
+      <div class="title">${esc(h.name)}</div><div class="sub">${esc(h.area||'')}${h.nights?` · ${h.nights} night${h.nights>1?'s':''}`:''}</div>
+      <div class="rowline"><div class="tags">${tagHtml(h.tags)}</div><div><span class="sub">${esc(h.price_note||'')}</span> <span class="price">${h.total?aed(h.total):''}</span></div></div>
+    </div>`:''}
+    ${(t.heads_up||[]).length?`<div class="card"><h3>Good to know</h3>${t.heads_up.map(n=>`<div class="note"><span>ⓘ</span><span>${esc(n)}</span></div>`).join('')}</div>`:''}
+    ${(t.alternatives||[]).length?`<div class="card"><h3>Other options</h3>${t.alternatives.map(o=>`<div class="alt"><div><div class="t">${esc(o.title)}</div><div class="sub">${esc(o.detail||'')}</div></div><div class="price">${o.total?aed(o.total):''}</div></div>`).join('')}</div>`:''}
+  </div>
+  <aside class="side"><div class="card">
+    <h3>Trip total</h3>
+    <div class="total">${total?aed(total):'—'}</div>
+    ${total&&budget?`<div class="bar"><i style="width:${pct}%;background:${over?'var(--bad)':'var(--ok)'}"></i></div>
+      <div class="sub">${over?`${aed(total-budget)} over`:`${aed(budget-total)} under`} your ${aed(budget)} budget</div>`:''}
+    <div style="margin-top:12px">
+      ${f.total?`<div class="line"><span>Flights</span><b>${aed(f.total)}</b></div>`:''}
+      ${h.total?`<div class="line"><span>Hotel</span><b>${aed(h.total)}</b></div>`:''}
+    </div>
+    ${t.question?`<div class="ask">${esc(t.question)}</div>`:''}
+    <button class="btn dark" id="copy">Copy itinerary</button>
+    <button class="btn light" id="again">Plan another trip</button>
+  </div></aside></div>`;
+  $('again').onclick=()=>{landing();window.scrollTo({top:0,behavior:'smooth'})};
+  $('copy').onclick=()=>{
+    const txt=[`${t.headline||city} (${pretty($('dep').value)} – ${pretty($('ret').value)})`,
+      f.airline?`Flights: ${f.airline} — ${(f.legs||[]).map(l=>`${l.label} ${l.when} ${l.time}`).join('; ')} — ${f.total?aed(f.total):''}`:'',
+      h.name?`Hotel: ${h.name}, ${h.area||''} — ${h.nights||''} nights — ${h.total?aed(h.total):''}`:'',
+      `Total: ${total?aed(total):'—'}`,...(t.heads_up||[]).map(n=>'Note: '+n)].filter(Boolean).join('\n');
+    navigator.clipboard?.writeText(txt).then(()=>{$('copy').textContent='Copied ✓';setTimeout(()=>$('copy').textContent='Copy itinerary',1500)}).catch(()=>{});
+  };
+}
+
+/* Fallback if the service returns plain text: tidy it for travellers */
+function renderPlain(txt){
+  const clean=txt.split('\n').filter(l=>!/approved data|i only plan|do not book|don’t book|don't book/i.test(l))
+    .map(l=>l.replace(/\s*\((?:[FHOR]\d)\)/g,'').replace(/\b[FHOR]\d\s*[—–-]\s*/g,'').replace(/\*\*/g,''));
+  let html='',inL=false;
+  for(const raw of clean){const l=raw.trim();if(!l){if(inL){html+='</ul>';inL=false}continue}
+    const m=l.match(/^[-•*]\s+(.*)/);if(m){if(!inL){html+='<ul>';inL=true}html+=`<li>${esc(m[1])}</li>`;continue}
+    if(inL){html+='</ul>';inL=false} html+=(l.length<60&&!/[.?!]$/.test(l))?`<p><b>${esc(l.replace(/:$/,''))}</b></p>`:`<p>${esc(l)}</p>`}
+  if(inL)html+='</ul>';
+  const v=CITIES[$('dest').value];
+  $('out').innerHTML=`<div class="banner" style="background:${v.tint}"><div class="eyebrow">${pretty($('dep').value)} – ${pretty($('ret').value)}</div><h2>Your trip to ${esc($('dest').value)}</h2></div><div class="card plain">${html}</div>`;
+}
+</script>
+</body>
+</html>
