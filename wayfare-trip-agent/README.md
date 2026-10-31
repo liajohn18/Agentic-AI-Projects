@@ -6,6 +6,10 @@
 
 ![status](https://img.shields.io/badge/status-prototype-orange) ![stack](https://img.shields.io/badge/stack-n8n%20%7C%20OpenAI%20%7C%20HTML-blue)
 
+![Wayfare planning a 3-night London trip: daytime flights, a central hotel with free cancellation, AED 6,440 against a 7,000 budget, and a non-refundable fare warning](docs/wayfare_screenshot.jpeg)
+
+*A real run: London, 2 adults, AED 7,000 budget, daytime flights. The agent picks the daytime flight over the cheaper red-eye, totals the trip, and flags the non-refundable fare.*
+
 ---
 
 ## What it does
@@ -117,6 +121,7 @@ wayfare-trip-agent/
 │   └── plans_run2_planner_v2.csv      Rerun outputs
 ├── evaluation/Trip_Planner_Evaluation.xlsx   Human grading: Evaluation Log, Failure Analysis, Failure Traces, Rubric
 ├── workflows/                         n8n workflow exports (Evaluation and API)
+├── docs/wayfare_screenshot.jpeg       Screenshot of a real run
 └── CHANGELOG.md                       Every change: problem, change, expected effect, result
 ```
 
